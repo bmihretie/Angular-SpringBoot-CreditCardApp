@@ -1,0 +1,72 @@
+<div class="container">
+    <h2>Apply for Credit Account</h2>
+    <br>
+
+    <form>
+        <div  *ngIf="pinfoSection">
+            <div class="form-group">
+                <label for="fname">First Name</label>
+                <input id="fname" name="fname" class="form-control" />
+
+                <label for="mname">Middle Name</label>
+                <input id="mname" name="mname" class="form-control"/>
+
+                <label for="lname">Last Name</label>
+                <input id="lname" name="lname" class="form-control"/>
+
+                <label for="dob">Date of Birth</label>
+                <input id="dob" name="dob" class="form-control"/>
+
+                <label for="ssn">Social Security</label>
+                <input id="ssn" name="ssn" class="form-control"/>
+
+                <label for="address">Address</label>
+                <input id="address" name="address" class="form-control"/>
+            </div>
+             <br>
+             <button type="button" class="btn btn-danger"><a routerLink="">Cancel</a></button>
+            <button class="btn btn-primary" (click)= 'toEmpSection()'>Next</button>
+        </div>
+        <div *ngIf= "empSection">
+            <div class="form-group">
+                <label for="cname">Company Name</label>
+                <input id="cname" name="cname" class="form-control"/>
+
+                <label for="phoneno">Contact Phone Number</label>
+                <input id="phoneno" name="phoneno" class="form-control"/>
+
+                <label for="salary">Annual Salary</label>
+                <input id="salary" name="salary" class="form-control"/>
+
+                <label for="foe">Field of Employment</label>
+                <input id="foe" name="foe" class="form-control"/>
+
+                <label for="len">Length of Employment</label>
+                <input id="len" name="len" class="form-control"/>
+                <br>
+                <h4>Reference Contacts</h4>
+                <label for="c1Name"> Reference 1 Full Name</label>
+                <input id="c1Name" name="c1Name" class="form-control"/>
+                <label for="c1Phone"> Reference 1 Phone Number</label>
+                <input id="c1Phone" name="c1Phone" class="form-control"/>
+
+                <br> 
+                <label for="c2Name"> Reference 2 Full Name</label>
+                <input id="c2Name" name="c2Name" class="form-control"/>
+                <label for="c2Phone"> Reference 2 Phone Number</label>
+                <input id="c2Phone" name="c2Phone" class="form-control"/>
+
+                <br>
+                <div class = "form-check form-group">
+                    <input class="form-check-input" type ="checkbox" id="sAccess" name= "sAccess">
+                    <label class ="form-check-label" for="sAccess">Secondary Account Access</label>
+                </div>
+
+            </div>
+            <br>
+            <button type="button" class="btn btn-danger" (click)= "onBack()">Back</button>
+            <button type="button" class="btn btn-primary">Apply</button>
+    </div>
+</form>
+</div>
+
