@@ -1,5 +1,5 @@
-<h1>Here is Your Account Information</h1>
-<div class="col-md-12" id="wrapper" *ngIf="pinfoSection">
+<h1 style="margin-left: 5px;">Account Information</h1>
+<div class="col-md-12" id="wrapper" *ngIf="pinfoSection" style="margin-left: 5px">
 
 <table class="table table-striped">
     <thead>
@@ -9,7 +9,7 @@
             <th>Last Name</th>
             <th>Account Number</th>
             <th>Balance</th>
-            <th>Rmaining Credit</th>
+            <th>Remaining Credit</th>
         </tr>
     </thead>
    
@@ -31,7 +31,7 @@
 <button class="btn btn-primary" (click)= 'toEmpSection()'>Next</button>
 </div>
 
-<div id="wrapper1" *ngIf= "empSection">
+<div id="wrapper1" *ngIf= "empSection" style="margin-left: 5px">
 
     <h1>Here is the summary of transactions for 30 days</h1>
     <br>
