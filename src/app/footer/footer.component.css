@@ -1,0 +1,10 @@
+#myFooter {
+  height: 50px;
+  /* flex-shrink: 0;
+  bottom: 0px;
+  padding: 20px; */
+  /* position: relative;
+  margin-top: -180px; /* negative value of footer height */
+  /* height: 180px;
+  clear: both; */
+}

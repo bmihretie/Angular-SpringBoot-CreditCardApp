@@ -1,9 +1,29 @@
 
 
+<div class="row d-flex justify-content-center align-items-center " style="background-color: #508bfc;" id="wrapper">
+    <div class="col-12 col-md-8 col-lg-6 col-xl-5 p-5 mb-5 ">
+        <div class="card shadow-2-strong" style="border-radius: 1rem;">
+            <h1 class="mb-100"></h1>
+            <div class="card-body p-5 pt-70 pb-70 text-center">
+                
+                User Name:<input type="text" class="mb-2" name="username" [(ngModel)]="username"><br/>
+                Password: <input type="password" class="mb-2" name="password" [(ngModel)]="pass"><br/>
 
-Username: <br><input type="text" [(ngModel)]="username"><br>
-Password: <br><input type="password" [(ngModel)] = "pass"><br>
+                <div class="text-center">
+                    <button type="button" class="btn btn-danger mr-5"><a routerLink="">Cancel</a></button>
+                <button (click)='verify()' routerLink="/display" class="btn btn-primary text-center m-8">Login</button>
+                </div>
 
-<button  (click)='verify()' class="btn btn-primary">Login</button> <br>
+                
+        </div>
 
-<a routerLink="/register"> Apply for a New Credit Account </a>
+       
+           
+
+        </div>
+
+    </div>
+
+</div>
+
+

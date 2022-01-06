@@ -1,0 +1,54 @@
+/* @import "~bootstrap/dist/css/bootstrap.min.css";
+@import "~font-awesome/css/font-awesome.min.css"; */
+
+/* @import "~font-awesome/css/font-awesome.css"; */
+.bg-theme {
+  background: #508bfc !important;
+}
+.card-contact {
+  margin-left: -130px;
+}
+
+fa-icon {
+  color: red;
+  size: 20px;
+}
+
+.myCss {
+  background: #508bfc !important;
+  color: #fff;
+  font-size: 30px;
+  position: relative;
+
+  margin: 5px;
+}
+.card-contact h1 {
+  color: #fff;
+  font-size: 30px;
+  position: relative;
+  margin-bottom: 0;
+}
+.card-contact h1::before {
+  content: "";
+  height: 3px;
+  width: 80px;
+  background-color: #fff;
+  position: absolute;
+  bottom: -10px;
+}
+
+.icon-part {
+  height: 50px;
+  width: 50px;
+  border: 2px solid #fff;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.btn-submit {
+  padding: 10px 20px !important;
+  background: #4963ad !important;
+  color: #fff;
+  border-radius: 20px !important;
+}
