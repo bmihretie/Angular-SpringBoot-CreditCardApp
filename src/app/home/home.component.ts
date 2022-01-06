@@ -7,5 +7,5 @@ import { Component } from "@angular/core";
 })
 
 export class HomeComponent{
-    pageTitle: string = 'Welcome to Credit Card Application';
+    pageTitle: string = 'Credit Account Application';
 }
