@@ -16,7 +16,7 @@ export class RegisterComponent implements OnInit {
   empSection = false;
   isSecondary=false;
 
-  user:Customer = new Customer("",0, 0,"","","","","","","","","","","","","","","");
+  user:Customer = new Customer("",0, 0,0,"","","","","","","","","","","","","","","");
  
 
   userInfo!:{
