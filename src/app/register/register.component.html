@@ -1,125 +1,309 @@
 
-<div class="row d-flex justify-content-center flex-nowrap mt-10 mb-50"  style="background-color: #508bfc;">
+<div class="row d-flex justify-content-center flex-nowrap mt-10 mb-50" style="background-color: #508bfc;">
 <div class="col-md-6">
     <h2>Apply for Credit Account</h2>
     <br>
 
-    <form >  
+    <form [formGroup]="exform">  
         <div  *ngIf="pinfoSection">
             <!-- <div class="form-group">
-                        
+
                 <label for="accountNumber">Account Number</label>
-                <input name="accountNumber" type="text" [(ngModel)]="user.accountNumber" id="fname"  placeholder="Account Number" class="form-control h-40" />
+                <input required minlength="2" formControlName="accountNumber" type="text"  placeholder="Account Number" class="form-control" />
+               
+                <div *ngIf="accountNumber?.invalid && accountNumber?.touched" class="text-danger">
+                    <p *ngIf="accountNumber?.errors?.['required']">Account Number required</p>
+                    <p *ngIf="accountNumber?.errors?.['pattern']">
+                        Only Numbers are allowed</p>
+                </div>
+                
             </div>
+
+          
             <div class="form-group">
-                <label for="mname">Balance</label>
-                <input name="balance" type="number" [(ngModel)]="user.balance" id="balance" placeholder="balance" class="form-control h-40" />
-            </div>
+                <label for="balance">Balance</label>
+                <input required formControlName="balance" type="text"  id="balance" placeholder="Balance" class="form-control" />
+
+                <div *ngIf="balance?.invalid && balance?.touched" class="text-danger">
+                    <p *ngIf="balance?.errors?.['required']">Balance required</p>
+                    <p *ngIf="balance?.errors?.['pattern']">
+                        Only Numbers are allowed</p>
+                </div>
+                   
+            </div> 
             
             <div class="form-group">
 
-                <label for="mname">Remaining Credit</label>
-                <input name="remianingCredit" type="number" [(ngModel)]="user.remianingCredit" id="fname"  placeholder="Remaining Credit" class="form-control h-40" />
-            </div> -->
+                <label for="remianingCredit">Remianing Credit</label>
+                <input required formControlName="remianingCredit" type="text" placeholder="Remaining Credit" class="form-control" />
 
+                <div *ngIf="remianingCredit?.invalid && remianingCredit?.touched" class="text-danger">
+                    <p *ngIf="remianingCredit?.errors?.['required']">Remaining Credit required</p>
+                    <p *ngIf="remianingCredit?.errors?.['pattern']">
+                        Only Numbers are allowed</p>
+                </div>
+                   
+            </div>  -->
+
+         
             <div class="form-group">
-                <label for="fname">First Name</label>        
-                <input name="fname" type="text" [(ngModel)]="user.firstName" id="fname" placeholder="First Name" class="form-control h-40" />
+                <label for="firstName">First Name</label>        
+                <input required formControlName="firstName" minlength="2" type="text" id="firstName" placeholder="First Name" class="form-control" />
+                <div *ngIf="firstName?.invalid && firstName?.touched" class="text-danger">
+                    <p *ngIf="firstName?.errors?.['required']">First Name required</p>
+                    <p *ngIf="firstName?.errors?.['minlength']">Too short First Name</p>
+                    <p *ngIf="firstName?.errors?.['pattern']">
+                        Only Characters are allowed</p>
+                      
+                </div> 
 
             </div>
 
+            
             <div class="form-group">
 
-                <label for="mname">Middle Name</label>
-                <input type="text" [(ngModel)]="user.middleName" id="mname" name="mname"  placeholder="Middle Name" class="form-control"/>
+                <label for="middleName">Middle Name</label>
+                <input required formControlName="middleName" minlength="2" type="text"  id="middleName" name="middleName"  placeholder="Middle Name" class="form-control"/>
+                <div *ngIf="middleName?.invalid && middleName?.touched" class="text-danger">
+                    <p *ngIf="middleName?.errors?.['required']">Middle Name required</p>
+                    <p *ngIf="middleName?.errors?.['minlength']">Too short Middle Name</p>
+                    <p *ngIf="middleName?.errors?.['pattern']">
+                        Only Letters are allowed</p>
+                      
+                </div> 
 
             </div>
 
+    
             <div class="form-group">
-
                 <label for="lname">Last Name</label>
-                <input type="text" [(ngModel)]="user.lastName" id="lname" name="lname" placeholder="Last Name" class="form-control"/>
+                <input required formControlName="lastName" type="text" id="lastName" name="lastName" placeholder="Last Name" class="form-control"/>
+                <div *ngIf="lastName?.invalid && lastName?.touched" class="text-danger">
+                    <p *ngIf="lastName?.errors?.['required']">Last Name required</p>
+                    <p *ngIf="lastName?.errors?.['minlength']">Too short Last Name</p>
+                    <p *ngIf="lastName?.errors?.['pattern']">
+                        Only Letters are allowed</p>
+                      
+                </div> 
+
             </div>
 
             <div class="form-group">
+                <label class="col-form-label">Email:</label>
+                <input required formControlName="email" type="text" class="form-control" >
+                <div *ngIf="email?.invalid && email?.touched" class="text-danger">
+                  <p *ngIf="email?.errors?.['required']">Email required</p>
+                  <p *ngIf="email?.errors?.['pattern']">Enter Valid Email </p>
+                
+                </div> 
+              </div>
 
-                <label for="dob">Date of Birth</label>
-                <input type="text" [(ngModel)]="user.birthDate" id="dob" name="dob" placeholder="Date of Birth" class="form-control"/>
+              <div class="form-group">
+                <label class="col-form-label">Phone:</label>
+                <input required formControlName="phone" minlength="10" placeholder="Format:773-773-773" type="text" class="form-control" >
+
+                <div *ngIf="phone?.invalid && phone?.touched" class="text-danger">
+                  <p *ngIf="phone?.errors?.['required']">Phone no is Required</p>
+                  <!-- <p *ngIf="phone?.errors?.['minlength']">Enter Valid phone numbers,only numbers allowed minimum length 10</p> -->
+                  <p *ngIf="phone?.errors?.['pattern']">Enter Valid phone numbers,only numbers allowed minimum length 10</p>
+                
+                </div> 
+             </div>
+                       
+            <div class="form-group">
+                <label for="userName">User Name</label>
+                <input required formControlName="userName" minlength="6" type="text"  id="userName" name="userName" placeholder="User Name" class="form-control"/>
+                <div *ngIf="userName?.invalid && userName?.touched" class="text-danger">
+                    <p *ngIf="userName?.errors?.['required']">User Name required</p>
+                    <p *ngIf="userName?.errors?.['minlength']">Too short User Name</p>
+                    
+                      
+                </div> 
+            </div>
+
+ 
+            <div class="form-group">
+                <label for="password">Password</label>
+                <input required type="text"  id="password" formControlName="password" placeholder="Password" class="form-control"/>
+
+                <div *ngIf="password?.invalid && password?.touched" class="text-danger">
+                    <p *ngIf="password?.errors?.['required']">Password required</p>
+                    <!-- <p *ngIf="password?.errors?.['minlength']">Minimum of 6 required/p> -->
+                    
+                    <p *ngIf="password?.errors?.['pattern']">
+                        Password length minimum should be 6 characters and contain atleast one  umbers, uppercase and lower case letters and special characters
+                        
+                    </p>
+                        
+                    
+                      
+                </div> 
+            </div>
+
+                       
+
+            <div class="form-group">
+
+                <label for="birthDate">Date of Birth</label>
+                <input required type='date' id="birthDate" formControlName="birthDate" placeholder="Date of Birth" class="form-control"/>
+
+                <div *ngIf="birthDate?.invalid && birthDate?.touched" class="text-danger">
+                    <p *ngIf="birthDate?.errors?.['required']">Birth Date required</p>
+                    
+                </div> 
 
             </div>
             
+           
             <div class="form-group">
 
-                <label for="ssn">Social Security</label>
-                <input type="text" [(ngModel)]="user.socialSecurity" id="ssn" name="ssn" placeholder="Social Security" class="form-control"/>
+                <label for="socialSecurity">Social Security</label>
+                <input required maxlength="10" minlength="10" type="text" id="socialSecurity" formControlName="socialSecurity" placeholder="Social Security" class="form-control"/>
+                <div *ngIf="socialSecurity?.invalid && socialSecurity?.touched" class="text-danger">
+                    <p *ngIf="socialSecurity?.errors?.['required']">Social Security required</p>
+                    <p *ngIf="socialSecurity?.errors?.['minlength']">Social security length should be 10</p>
+                    <p *ngIf="socialSecurity?.errors?.['pattern']">
+                        Only Numbers are allowed</p>
+                </div>
             
             </div>
 
            
                 <div class="form-group">
                     <label for="address">Address</label>
-                    <input type="text" [(ngModel)]="user.adress" id="address" name="address" placeholder="Address" class="form-control"/>
+                    <input required type="text" minlength="6"  id="address" formControlName="address" placeholder="Address" class="form-control" />
+                    <div *ngIf="address?.invalid && address?.touched" class="text-danger">
+                        <p *ngIf="address?.errors?.['required']">Adress required</p>
+                        <p *ngIf="address?.errors?.['minlength']">Too short adress name</p>
+                        
+                    </div>
                 </div>
              <br>
              <button type="button" class="btn btn-danger mr-5"><a routerLink="">Cancel</a></button>
             <button class="btn btn-primary" (click)= 'toEmpSection()'>Next</button>
+            <br>
+            <br>
         </div>
+
+        
         <div *ngIf= "empSection">
 
             <div class="form-group">
 
-                <label for="cname">Company Name</label>
-                <input type="text" [(ngModel)]="user.companyName" id="cname" name="cname" placeholder="Company Name" class="form-control"/>
+                <label for="companyName">Company Name</label>
+                <input required type="text" minlength="2" id="companyName" formControlName="companyName" placeholder="Company Name" class="form-control"/>
+                <div *ngIf="companyName?.invalid && companyName?.touched" class="text-danger">
+                    <p *ngIf="companyName?.errors?.['required']">Company Name required</p>
+                    <p *ngIf="companyName?.errors?.['minlength']">Too short Company Name</p>
+                    <p *ngIf="companyName?.errors?.['pattern']">
+                        Only Letters are allowed</p>
+                    
+                      
+                </div> 
 
             </div>
             
             <div class="form-group">
                 <label for="salary">Annual Salary</label>
-                <input type="text" [(ngModel)]="user.salary" id="salary" name="salary"  placeholder="Salary" class="form-control"/>
+                <input type="text" required formControlName="salary" formControlName="salary"  placeholder="Salary" class="form-control"/>
+                <div *ngIf="salary?.invalid && salary?.touched" class="text-danger">
+                    <p *ngIf="salary?.errors?.['required']">Salaryrequired</p>
+                    <p *ngIf="salary?.errors?.['pattern']">
+                        Only Numbers are allowed</p>
+                </div>
             </div>
 
+   
             <div class="form-group">
-                <label for="foe">Field of Employment</label>
-                <input type="text" [(ngModel)]="user.emptField" id="field" name="field" placeholder="Feild" class="form-control"/>
+                <label for="emptField">Field of Employment</label>
+                <input type="text" required minlength="2" id="emptField" formControlName="emptField" placeholder="Field" class="form-control"/>
+                <div *ngIf="emptField?.invalid && emptField?.touched" class="text-danger">
+                    <p *ngIf="emptField?.errors?.['required']">Field of Employmentrequired</p>
+                    <p *ngIf="emptField?.errors?.['minlength']">Too short Field of Employment Name</p>
+                    <p *ngIf="emptField?.errors?.['pattern']">
+                        Only Letters are allowed</p>
+                    
+                      
+                </div> 
 
             </div>
+                        
 
             <div class="form-group">
-                <label for="len">Length of Employment</label>
-                <input id="emplen" [(ngModel)]="user.lengthOfEmployment" name="emplen" placeholder="Employee Length" class="form-control"/>
+                <label for="lengthOfEmployment">Length of Employment</label>
+                <input required id="lengthOfEmployment"  formControlName="lengthOfEmployment" placeholder="Employee Length" class="form-control"/>
+
+                <div *ngIf="lengthOfEmployment?.invalid && lengthOfEmployment?.touched" class="text-danger">
+                    <p *ngIf="lengthOfEmployment?.errors?.['required']">Length of Employment required</p>
+                    <p *ngIf="lengthOfEmployment?.errors?.['pattern']">
+                        Only Numbers are allowed</p>
+                </div>
             </div>
 
             <br>
-
             <h4>Reference Contacts</h4>
 
             <div class="form-group">
-                <label for="c1Name"> Reference 1 Full Name</label>
-                <input type="text" id="c1Name" [(ngModel)]="user.referenceOneName" name="c1Name" placeholder="Reference One Name"  class="form-control"/>
+                <label for="referenceOneName"> Reference 1 Full Name</label>
+                <input required type="text" id="referenceOneName" minlength="2" formControlName="referenceOneName" placeholder="Reference One Name"  class="form-control"/>
+                <div *ngIf="referenceOneName?.invalid && referenceOneName?.touched" class="text-danger">
+                    <p *ngIf="referenceOneName?.errors?.['required']">Reference One Name required</p>
+                    <p *ngIf="referenceOneName?.errors?.['minlength']">Too short Reference One Name</p>
+                    <p *ngIf="referenceOneName?.errors?.['pattern']">
+                        Only Letters are allowed</p>
+                    
+                      
+                </div> 
             </div>
 
+
+
             <div class="form-group">
-                <label for="c1Phone"> Reference 1 Phone Number</label>
-                <input type="text" id="c1Phone" [(ngModel)]="user.referenceOnePhoneNumb"  name="c1Phone" placeholder="Phone Number" class="form-control"/>
+                <label for="PhreferenceOnePhoneNumbone"> Reference 1 Phone Number</label>
+                <input type="text" id="referenceOnePhoneNumb"  formControlName="referenceOnePhoneNumb" placeholder="Phone Number" class="form-control"/>
+
                 <br> 
+                <div *ngIf="referenceOnePhoneNumb?.invalid && referenceOnePhoneNumb?.touched" class="text-danger">
+                    <p *ngIf="referenceOnePhoneNumb?.errors?.['required']">Phone no is Required</p>
+                    <!-- <p *ngIf="phone?.errors?.['minlength']">Enter Valid phone numbers,only numbers allowed minimum length 10</p> -->
+                    <p *ngIf="referenceOnePhoneNumb?.errors?.['pattern']">Enter Valid phone numbers,only numbers allowed minimum length 10</p>
+                  
+                  </div> 
                 
             </div>
 
+              
             <div class="form-group">
                 
-                <label for="c2Name"> Reference 2 Full Name</label>
-                <input type="text" id="c2Name" [(ngModel)]="user.referenceTwoName" name="c2Name" placeholder="Reference Two Name" class="form-control"/>
+                <label for="referenceTwoName"> Reference 2 Full Name</label>
+                <input required minlength="2"type="text" id="referenceTwoName"  formControlName="referenceTwoName" placeholder="Reference Two Name" class="form-control"/>
+                <div *ngIf="referenceTwoName?.invalid && referenceTwoName?.touched" class="text-danger">
+                    <p *ngIf="referenceTwoName?.errors?.['required']">Reference One Name required</p>
+                    <p *ngIf="referenceTwoName?.errors?.['minlength']">Too short Reference One Name</p>
+                    <p *ngIf="referenceTwoName?.errors?.['pattern']">
+                        Only Letters are allowed</p>
+                    
+                    
+                      
+                </div> 
             </div>
 
+         
             <div class="form-group">
                 
-                <label for="c2Phone"> Reference 2 Phone Number</label>
-                <input type="text" id="c2Phone" [(ngModel)]="user.referenceTwoPhoneNumb"  name="c2Phone" placeholder="Phone Number" class="form-control"/>
-
+                <label for="referenceTwoPhoneNumb"> Reference Two Phone Number</label>
+                <input required type="text" id="referenceTwoPhoneNumb"  formControlName="referenceTwoPhoneNumb" placeholder="Phone Number" class="form-control"/>
+                <div *ngIf="referenceTwoPhoneNumb?.invalid && referenceTwoPhoneNumb?.touched" class="text-danger">
+                    <p *ngIf="referenceTwoPhoneNumb?.errors?.['required']">Phone no is Required</p>
+                    <!-- <p *ngIf="phone?.errors?.['minlength']">Enter Valid phone numbers,only numbers allowed minimum length 10</p> -->
+                    <p *ngIf="referenceTwoPhoneNumb?.errors?.['pattern']">Enter Valid phone numbers,only numbers allowed minimum length 10</p>
+                  
+                  </div> 
                 <br>
-            </div>
+            </div> 
                 
 
+                <!-- 
                
                 <!-- <div class = "form-check form-group">
                     <input class="form-check-input" type ="checkbox" id="sAccess" name= "sAccess" [(ngModel)]="isSecondary"> 
@@ -130,18 +314,30 @@
                     <label for="secEmail">Secondary Email</label>
                     <input type="email" id="secEmail" [(ngModel)]name="secEmail" class="form-control"/>
 
-                </div>
+                </div>-->
                 <br>
                 <div class = "form-check form-group">
-                    <input class="form-check-input" type ="checkbox" id="isAccept" name= "isAccept" ngModel> 
-                    <label class ="form-check-label" for="sAccess">Agree To Company's terms & Conditions</label>
-                </div> -->
+                    <input class="form-check-input" type ="checkbox" id="isAccept" formControlName= "isAccept"  > 
+                    <label class ="form-check-label" for="isAccept">Agree To Company's terms & Conditions</label>
+                    <!-- <div style="color: red; padding-top: 0.2rem" *ngIf="isAccept?.hasError('required', 'isAccept')">
+                        Required
+                      </div>
+                      <hr> -->
+                    <div *ngIf="isAccept?.invalid && isAccept?.touched" class="text-danger">
+                        <p *ngIf="isAccept?.errors?.['required']">You must click to agree to Company terms and Condtions</p>
+                        
+                      </div> 
+                </div> 
 
             <!-- </div> -->
             <br>
-            <button type="button" class="btn btn-danger mr-5" (click)= "onBack()">Back</button>
-            <button type="button" class="btn btn-primary" (click)="createCustomerCredit()">Apply</button>
-    </div>
+            <button type="button" class="btn btn-danger mr-5 mb-10" (click)= "onBack()">Back</button>
+            <button type="button" class="btn btn-primary mb-10" [disabled]="exform.invalid">Apply</button>
+            <!-- <div class="container" style="height: 10px;"></div>-->
+            <br>
+            <br> 
+            <!-- <button type="button" class="btn btn-primary" [disabled]="exform.invalid" (click)="createCustomerCredit()">Apply</button>-->
+    </div> 
 </form>
 </div>
 </div>

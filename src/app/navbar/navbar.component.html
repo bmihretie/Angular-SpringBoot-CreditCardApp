@@ -1,5 +1,5 @@
 <nav class="navbar navbar-expand-lg navar navbar-dark bg-dark">
-    <a class="navbar-brand" href="#" style="margin-left: 10px;">Credit Account System</a>
+    <a class="navbar-brand" href="#"> Credit Card App</a>
     <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
       <span class="navbar-toggler-icon"></span>
     </button>
@@ -14,11 +14,33 @@
         </li>
   
         <li class="nav-item">
-          <a class="nav-link" routerLink="/login">Sign-in</a>
+          <a *ngIf="!loginService.isUserLoggedIn()" class="nav-link"  routerLink="/login">Sign-in</a>
         </li>
-  
+
         <li class="nav-item">
-          <a class="nav-link" routerLink="/help">Help</a>
+          <a class="nav-link" routerLink="/aboutus">About Us</a>
+        </li>
+   
+        <li class="nav-item">
+          <a class="nav-link" routerLink="/help">Contact Us</a>
+        </li>
+
+        <li class="nav-item">
+          <a *ngIf="loginService.isUserLoggedIn()" class="nav-link" routerLink="/display">Display Account</a>
+        </li>
+
+        <li class="nav-item">
+          <a *ngIf="loginService.isUserLoggedIn()" class="nav-link" routerLink="/transaction">Transaction Statement</a>
+          
+        </li>
+
+        <li class="nav-item">
+          <a *ngIf="loginService.isUserLoggedIn()" class="nav-link" routerLink="/creditScore">Credit Score</a>
+          
+        </li>
+
+        <li class="nav-item ">
+          <a *ngIf="loginService.isUserLoggedIn()" class="nav-link" routerLink="/logout">Log out</a>
         </li>
   
       </ul>

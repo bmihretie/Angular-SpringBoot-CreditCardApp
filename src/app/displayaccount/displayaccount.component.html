@@ -1,45 +1,110 @@
-<h1 style="margin-left: 5px;">Account Information</h1>
-<div class="col-md-6" id="wrapper" *ngIf="pinfoSection" style="margin-left: 5px">
 
-<table class="table table-striped" [(ngModel)]=account>
-    <tr>
-      <th>Name:</th>
-      <td>{{account.customer.firstName}} {{account.customer.middleName}} {{account.customer.lastName}}</td>
-    </tr>
-    <tr>
-        <th>Phone Number:</th>
-        <td>{{account.customer.phoneNumber}}</td>
-      </tr>
-    <tr>
-      <th>Employer:</th>  
-      <td>{{account.customer.employer}}</td>      
-    </tr>  
-    <tr>
-      <th>Account Number:</th>
-      <td>{{account.accountId}}</td>
-    </tr>
-    <tr>
-        <th>Credit Score:</th>
-        <td>{{account.customer.creditScore}}</td>
-    </tr>
-    <tr>
-        <th>Total Credit Granted:</th>
-        <td>${{account.totalCredit}}</td>
-    </tr>
-    <tr>
-        <th>Credit Remaining:</th>
-        <td>${{account.remainingCredit}}</td>
-    </tr>
-  </table>
+<div class="col-md-12" id="wrapper" *ngIf="pinfoSection">
+
+    <h1>Here is Your Account Information</h1>
+<table class="table table-striped">
+    <thead>
+        <tr>
+            <th>First Name</th>
+            <th>Middle Name</th>
+            <th>Last Name</th>
+            <th>Account Number</th>
+            <th>Balance</th>
+            <th>Rmaining Credit</th>
+        </tr>
+    </thead>
+   
+    <tbody>
+        <tr *ngFor="let customer of customers">
+            <td>{{customer.firstName}}</td>
+            <td>{{customer.middleName}}</td>
+            <td>{{customer.lastName}}</td>
+            <td>{{customer.accountNumber}}</td>
+            <td>{{customer.balance}}</td>
+            <td>{{customer.remianingCredit}}</td>
+        </tr>
+        
+    </tbody>
+
+</table>
 
 
 <button class="btn btn-primary" (click)= 'toEmpSection()'>Next</button>
 </div>
 
-<div id="wrapper1" *ngIf= "empSection" style="margin-left: 5px">
+<div id="wrapper1" *ngIf= "empSection" class=" justify-content-center">
 
-    <h1>Here is the summary of transactions for 30 days</h1>
+    <h1>Here is the summary of transactions for the past 30 days</h1>
+
+    <table class="table table-striped">
+        <thead>
+            <tr>
+                <th>Transaction ID </th>
+                <th>Transaction Amount</th>
+                <th>Transaction Date</th>
+                <!-- <th>Account Number</th>
+                <th>Balance</th>
+                <th>Rmaining Credit</th> -->
+            </tr>
+        </thead>
+       
+        <tbody>
+            <tr>
+                <td>ID1005</td>
+                <td>270.67</td>
+                <td>02/20/2020</td>
+                <!-- <td></td>
+                <td></td>
+                <td></td> -->
+            </tr>
+            
+        </tbody>
+    
+    </table>
+    
+    <br>
+    <div class="d-flex justify-content-center" >
+    <button type="button" class="btn btn-danger mr-5" (click)= "onBack()">Back</button>
+    <button type="button" class="btn btn-primary mr-5" (click)='toEmpSection1()' >Forward 3o days</button>
+    <button type="button" class="btn btn-success mr-5" routerLink="/creditScore">Credit Score</button>
+    <button type="button" class="btn btn-info" routerLink="/transaction">Statements</button>
+    </div>
+    
+</div>
+
+<div id="wrapper1" *ngIf= "empSection1">
+
+    <h1>Here is the summary of transactions for the last 30 days</h1>
+
+    <table class="table table-striped">
+        <thead>
+            <tr>
+                <th>Transaction ID </th>
+                <th>Transaction Amount</th>
+                <th>Transaction Date</th>
+                <!-- <th>Account Number</th>
+                <th>Balance</th>
+                <th>Rmaining Credit</th> -->
+            </tr>
+        </thead>
+       
+        <tbody>
+            <tr>
+                <td>ID1005</td>
+                <td>270.67</td>
+                <td>02/20/2020</td>
+                <!-- <td></td>
+                <td></td>
+                <td></td> -->
+            </tr>
+            
+        </tbody>
+        
+    
+    </table>
+    
     <br>
 
-    <button type="button" class="btn btn-danger mr-5" (click)= "onBack()">Back</button>
+    <button type="button" class="btn btn-danger mr-5" (click)= "onBack1()">Back</button>
+    
 </div>
