@@ -1,0 +1,29 @@
+
+
+   <div class="col-md-12" id="wrapper" >
+
+    <h1 class="text-center">Credit Score History</h1>
+<table class="table table-striped">
+    <thead>
+        <tr>
+            <th>Credit Score</th>
+            <th>Month / Year</th>
+            <th>Description about your Credit Score</th>
+        </tr>
+    </thead>
+   
+    <tbody>
+        <tr *ngFor="let creditScore of creditScores">
+            <td>{{creditScore.creditScore}}</td>
+            <td>{{creditScore.statementDate | date: 'MMMM yyyy'}}</td>
+            <td>Your credit score increased due to a decrease in overall balance and timely monthly payments.</td>
+        </tr>
+    </tbody>
+
+</table>
+
+
+
+
+</div>
+

@@ -12,7 +12,13 @@ import { DisplayaccountComponent } from './displayaccount/displayaccount.compone
 import { HelpComponent } from './help/help.component';
 import { NavbarComponent } from './navbar/navbar.component';
 import { FooterComponent } from './footer/footer.component';
-import { HttpClientModule } from '@angular/common/http';
+import { HttpClientModule, HTTP_INTERCEPTORS } from '@angular/common/http';
+import { LogoutComponent } from './logout/logout.component';
+import { BasicauthhttpinterceptorService } from './service/basicauthhttpinterceptor.service';
+
+import { AboutusComponent } from './aboutus/aboutus.component';
+import { TransactionStatementComponent } from './transaction-statement/transaction-statement.component';
+import { CreditScoreComponent } from './credit-score/credit-score.component';
 //import { FontAwesomeModule} from '@fortawesome/fontawesome-free';
 // import { fas } from '@fortawesome/free-solid-svg-icons';
 // import { far } from '@fortawesome/free-regular-svg-icons';
@@ -32,7 +38,11 @@ import { HttpClientModule } from '@angular/common/http';
     DisplayaccountComponent,
     HelpComponent,
     NavbarComponent,
-    FooterComponent
+    FooterComponent,
+    LogoutComponent,
+    AboutusComponent,
+    TransactionStatementComponent,
+    CreditScoreComponent
   ],
   imports: [
     BrowserModule,
@@ -44,9 +54,15 @@ import { HttpClientModule } from '@angular/common/http';
    
     
   ],
-  providers: [],
+ 
+  providers: [
+    // {  
+    //   provide:HTTP_INTERCEPTORS, useClass:BasicauthhttpinterceptorService, multi:true 
+    // }
+    ],
   bootstrap: [AppComponent]
 })
+
 export class AppModule {
 
   // constructor(library:FaIconLibrary){

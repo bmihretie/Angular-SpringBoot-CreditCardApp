@@ -1,7 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { Customer, HttpclientService } from '../service/httpclient.service';
 
-
 @Component({
   selector: 'app-displayaccount',
   templateUrl: './displayaccount.component.html',
@@ -11,20 +10,15 @@ export class DisplayaccountComponent implements OnInit {
 
   pinfoSection = true;
   empSection = false;
+  empSection1 = false;
 
-  // customer !:Customer;
+  // customers !:Customer[];
   account: any;
+
 
   constructor(private httpClientService:HttpclientService) { }
 
   ngOnInit(){
-
-    // this.httpClientService.getCustomers().subscribe(
-    //   response =>{
-    //     this.customer = response
-    //   },
-      
-    // )
 
     this.httpClientService.getCustomerAccount().subscribe(
       response =>{
@@ -33,7 +27,6 @@ export class DisplayaccountComponent implements OnInit {
       },
     )
   }
-
 
   // handleSuccessfulResponse(response): void {
   //   throw new Error('Method not implemented.');
@@ -46,10 +39,23 @@ export class DisplayaccountComponent implements OnInit {
 
   }
 
+  toEmpSection1(){
+
+    this.empSection = false;
+    this.empSection1 = true;
+
+  }
+
   onBack(){
 
     this.pinfoSection = true;
     this.empSection = false;
+  }
+
+  onBack1(){
+
+    this.empSection = true;
+    this.empSection1 = false;
   }
 
 }

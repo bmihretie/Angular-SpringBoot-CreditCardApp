@@ -1,0 +1,11 @@
+#wrapper {
+  background: #508bfc !important;
+  color: #fff;
+  font-size: 30px;
+  margin: 5px;
+  /* min-height: calc(100vh - 50px); */
+}
+
+#wrapper1 {
+  min-height: calc(100vh - 50px);
+}

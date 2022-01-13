@@ -1,0 +1,28 @@
+
+
+   <div class="col-md-12" id="wrapper" >
+
+        <h1 class="text-center">Monthly Statements</h1>
+    <table class="table table-striped">
+        <thead>
+            <tr>
+                <th>Month / Year</th>
+                <th>Download as PDF</th>
+            </tr>
+        </thead>
+       
+        <tbody>
+            <tr *ngFor="let statement of statements">
+                <td>{{statement.statementDate | date: 'MMMM yyyy'}}</td>
+                <td><a href="/"><i class="fa fa-file-pdf-o "></i><small class="ml-1">Download</small></a></td>
+            </tr>
+            
+        </tbody>
+    
+    </table>
+    
+    
+    
+
+</div>
+

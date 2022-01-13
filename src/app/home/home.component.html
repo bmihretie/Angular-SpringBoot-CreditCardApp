@@ -40,26 +40,31 @@
    <div class="card flex">
     <img class="card-img-top" src="./assets/images/creditcard.jpg" alt="Credit card image" 
     style="max-height:500px;" class="img-responsive mb-3 pb-3" >
-    <div class="card-body" class="text-center">
-      <h5 class="card-title">Follow the steps below</h5>
-      <p class="card-text font-weight-bold mb-3 pb-3">Click on the appropriate button to either apply for credit, sign-in, or get help</p>
+    <div class="card-body" class="text-center" >
+      <h5 class="card-title">Follow the steps</h5>
+      <p class="card-text font-weight-bold mb-3 pb-3" *ngIf="!isLoggedIn">Click on the appropriate button to either apply for credit, sign in, or get help.</p>
+      <p class="card-text font-weight-bold mb-3 pb-3" *ngIf="isLoggedIn">Click on the appropriate button below to either contact us, or to get help navigating through the application.</p>
     </div>
     
     <div class="text-center mb-50 pb-50">
 
     <ul class="list-unstyled">
-        <li class="pb-2 mb-10">
+        <li class="pb-2 mb-10" *ngIf="!isLoggedIn">
             <!-- <a routerLink="/register" > Apply For Credit </a> -->
             <button type="button" class="btn btn-primary btn-lg btn-block col-4" routerLink="/register" >
                 Apply For Credit</button>
         </li>
-        <li class="pb-2 mb-10">
+        <li class="pb-2 mb-10" *ngIf="!isLoggedIn">
             <button type="button" class="btn btn-success btn-lg btn-block col-4" routerLink="/login" >
-            Sign-in</button>
+            Sign in</button>
         </li>
         <li class="pb-2 mb-10 pb-50">
-            <button type="button" class="btn btn-secondary btn-lg btn-block col-4" routerLink="/help" >
-                Contact Us</button>
+          <button type="button" class="btn btn-secondary btn-lg btn-block col-4" routerLink="/help" >
+              Contact Us</button>
+       </li>
+        <li class="pb-2 mb-10 pb-50">
+            <button type="button" class="btn btn-secondary btn-lg btn-block col-4" routerLink="/aboutus" >
+                Help</button>
         </li>
     </ul>
 
