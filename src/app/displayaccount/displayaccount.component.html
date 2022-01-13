@@ -39,7 +39,7 @@
 
 <div id="wrapper1" *ngIf= "empSection" class=" justify-content-center">
 
-    <h1>Here is the summary of transactions for the past 30 days</h1>
+    <h1>Transaction History for the past 30 days</h1>
 
     <table class="table table-striped">
         <thead>
@@ -69,8 +69,8 @@
     
     <br>
     <div class="d-flex justify-content-center" >
-    <button type="button" class="btn btn-danger mr-5" (click)= "onBack()">Back</button>
-    <button type="button" class="btn btn-primary mr-5" (click)='toEmpSection1()' >Forward 3o days</button>
+    <!-- <button type="button" class="btn btn-danger mr-5" (click)= "onBack()">Back</button> -->
+    <button type="button" class="btn btn-primary mr-5" (click)='toEmpSection1()' >Previous 3o days</button>
     <button type="button" class="btn btn-success mr-5" routerLink="/creditScore">Credit Score</button>
     <button type="button" class="btn btn-info" routerLink="/transaction">Statements</button>
     </div>
