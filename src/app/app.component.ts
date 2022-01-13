@@ -14,5 +14,5 @@ import { Component } from '@angular/core';
 })
 export class AppComponent {
   title = 'credit-card-app';
-  pageTitle:string = 'Welcome to Credit Card App'; 
+  pageTitle:string = 'Credit Account Application - Group 1'; 
 }

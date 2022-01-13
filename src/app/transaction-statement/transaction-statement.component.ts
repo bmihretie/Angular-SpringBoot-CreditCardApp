@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { HttpclientService } from '../service/httpclient.service';
 
 @Component({
   selector: 'app-transaction-statement',
@@ -7,12 +8,19 @@ import { Component, OnInit } from '@angular/core';
 })
 export class TransactionStatementComponent implements OnInit {
 
-  constructor() { }
-
-  ngOnInit(): void {
-
- 
+  constructor(private httpClientService:HttpclientService) { }
   
+  statements: any;
+
+
+  
+  ngOnInit() {
+    this.httpClientService.getCustomerStatementsAndCreditScore().subscribe(
+      response =>{
+        console.log(response)
+        this.statements = response
+      },
+    )
   }
 
 }

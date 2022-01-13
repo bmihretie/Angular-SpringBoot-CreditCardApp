@@ -12,16 +12,20 @@ export class DisplayaccountComponent implements OnInit {
   empSection = false;
   empSection1 = false;
 
-  customers !:Customer[];
+  // customers !:Customer[];
+  account: any;
+
 
   constructor(private httpClientService:HttpclientService) { }
 
   ngOnInit(){
 
-    this.httpClientService.getCustomers().subscribe(
-      response =>{this.customers = response},
+    this.httpClientService.getCustomerAccount().subscribe(
+      response =>{
+        console.log(response)
+        this.account = response
+      },
     )
-
   }
 
   // handleSuccessfulResponse(response): void {

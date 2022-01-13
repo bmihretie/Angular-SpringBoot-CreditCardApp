@@ -2,25 +2,22 @@
 
    <div class="col-md-12" id="wrapper" >
 
-    <h1 class="text-center">Here is Your Credit Score</h1>
+    <h1 class="text-center">Credit Score History</h1>
 <table class="table table-striped">
     <thead>
         <tr>
             <th>Credit Score</th>
-            <th>Updated Date</th>
+            <th>Month / Year</th>
             <th>Description about your Credit Score</th>
-            
         </tr>
     </thead>
    
     <tbody>
-        <tr>
-            <td>6.8</td>
-            <td>01/01/2020</td>
-            <td>Your Credit score is a little bit low by 2 points since you did not pay the minimum  payment</td>
-            
+        <tr *ngFor="let creditScore of creditScores">
+            <td>{{creditScore.creditScore}}</td>
+            <td>{{creditScore.statementDate | date: 'MMMM yyyy'}}</td>
+            <td>Your credit score increased due to a decrease in overall balance and timely monthly payments.</td>
         </tr>
-        
     </tbody>
 
 </table>

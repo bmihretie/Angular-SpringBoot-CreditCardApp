@@ -30,7 +30,7 @@ export class AuthenticationService {
     // console.log(username);
     // console.log(password);
     const headers = new HttpHeaders({ Authorization: 'Basic ' + btoa(username + ':' + password) });
-    return this.httpClient.get<User>('http://localhost:8080/customers/validateLogin',{headers}).pipe(
+    return this.httpClient.get<User>('https://creditgroup1-spring-docker.azurewebsites.net/customer/validateLogin',{headers}).pipe(
      map(
        userData => {
         sessionStorage.setItem('username',username);

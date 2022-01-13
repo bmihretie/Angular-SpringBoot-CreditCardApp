@@ -1,5 +1,5 @@
 <nav class="navbar navbar-expand-lg navar navbar-dark bg-dark">
-    <a class="navbar-brand" href="#"> Credit Card App</a>
+    <a class="navbar-brand" href="#"> Credit Account Application </a>
     <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
       <span class="navbar-toggler-icon"></span>
     </button>
@@ -10,7 +10,7 @@
           <a class="nav-link" routerLink="/">Home <span class="sr-only">(current)</span></a>
         </li>
         <li class="nav-item">
-          <a class="nav-link" routerLink="/register">Apply for Credit</a>
+          <a *ngIf="!loginService.isUserLoggedIn()" class="nav-link" routerLink="/register">Apply for Credit</a>
         </li>
   
         <li class="nav-item">
@@ -26,11 +26,11 @@
         </li>
 
         <li class="nav-item">
-          <a *ngIf="loginService.isUserLoggedIn()" class="nav-link" routerLink="/display">Display Account</a>
+          <a *ngIf="loginService.isUserLoggedIn()" class="nav-link" routerLink="/display">My Account</a>
         </li>
 
         <li class="nav-item">
-          <a *ngIf="loginService.isUserLoggedIn()" class="nav-link" routerLink="/transaction">Transaction Statement</a>
+          <a *ngIf="loginService.isUserLoggedIn()" class="nav-link" routerLink="/transaction">Statements</a>
           
         </li>
 
@@ -40,7 +40,7 @@
         </li>
 
         <li class="nav-item ">
-          <a *ngIf="loginService.isUserLoggedIn()" class="nav-link" routerLink="/logout">Log out</a>
+          <a *ngIf="loginService.isUserLoggedIn()" class="nav-link" routerLink="/logout">Logout</a>
         </li>
   
       </ul>

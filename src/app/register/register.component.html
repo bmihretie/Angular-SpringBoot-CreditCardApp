@@ -50,10 +50,10 @@
                 <label for="firstName">First Name</label>        
                 <input required formControlName="firstName" minlength="2" type="text" id="firstName" placeholder="First Name" class="form-control" />
                 <div *ngIf="firstName?.invalid && firstName?.touched" class="text-danger">
-                    <p *ngIf="firstName?.errors?.['required']">First Name required</p>
-                    <p *ngIf="firstName?.errors?.['minlength']">Too short First Name</p>
+                    <p *ngIf="firstName?.errors?.['required']">First name required</p>
+                    <p *ngIf="firstName?.errors?.['minlength']">First name too short</p>
                     <p *ngIf="firstName?.errors?.['pattern']">
-                        Only Characters are allowed</p>
+                        Only characters are allowed</p>
                       
                 </div> 
 
@@ -65,10 +65,10 @@
                 <label for="middleName">Middle Name</label>
                 <input required formControlName="middleName" minlength="2" type="text"  id="middleName" name="middleName"  placeholder="Middle Name" class="form-control"/>
                 <div *ngIf="middleName?.invalid && middleName?.touched" class="text-danger">
-                    <p *ngIf="middleName?.errors?.['required']">Middle Name required</p>
-                    <p *ngIf="middleName?.errors?.['minlength']">Too short Middle Name</p>
+                    <p *ngIf="middleName?.errors?.['required']">Middle name required</p>
+                    <p *ngIf="middleName?.errors?.['minlength']">Middle name too short</p>
                     <p *ngIf="middleName?.errors?.['pattern']">
-                        Only Letters are allowed</p>
+                        Only letters are allowed</p>
                       
                 </div> 
 
@@ -79,10 +79,10 @@
                 <label for="lname">Last Name</label>
                 <input required formControlName="lastName" type="text" id="lastName" name="lastName" placeholder="Last Name" class="form-control"/>
                 <div *ngIf="lastName?.invalid && lastName?.touched" class="text-danger">
-                    <p *ngIf="lastName?.errors?.['required']">Last Name required</p>
-                    <p *ngIf="lastName?.errors?.['minlength']">Too short Last Name</p>
+                    <p *ngIf="lastName?.errors?.['required']">Last name required</p>
+                    <p *ngIf="lastName?.errors?.['minlength']">Last name too short</p>
                     <p *ngIf="lastName?.errors?.['pattern']">
-                        Only Letters are allowed</p>
+                        Only letters are allowed</p>
                       
                 </div> 
 
@@ -90,32 +90,32 @@
 
             <div class="form-group">
                 <label class="col-form-label">Email:</label>
-                <input required formControlName="email" type="text" class="form-control" >
+                <input required formControlName="email" type="text" placeholder="Email address" class="form-control" >
                 <div *ngIf="email?.invalid && email?.touched" class="text-danger">
-                  <p *ngIf="email?.errors?.['required']">Email required</p>
-                  <p *ngIf="email?.errors?.['pattern']">Enter Valid Email </p>
+                  <p *ngIf="email?.errors?.['required']">Email address required</p>
+                  <p *ngIf="email?.errors?.['pattern']">Enter a valid email address</p>
                 
                 </div> 
               </div>
 
               <div class="form-group">
                 <label class="col-form-label">Phone:</label>
-                <input required formControlName="phone" minlength="10" placeholder="Format:773-773-773" type="text" class="form-control" >
+                <input required formControlName="phone" minlength="10" placeholder="(***)-***-****" type="text" class="form-control" >
 
                 <div *ngIf="phone?.invalid && phone?.touched" class="text-danger">
-                  <p *ngIf="phone?.errors?.['required']">Phone no is Required</p>
+                  <p *ngIf="phone?.errors?.['required']">Phone number is required</p>
                   <!-- <p *ngIf="phone?.errors?.['minlength']">Enter Valid phone numbers,only numbers allowed minimum length 10</p> -->
-                  <p *ngIf="phone?.errors?.['pattern']">Enter Valid phone numbers,only numbers allowed minimum length 10</p>
+                  <p *ngIf="phone?.errors?.['pattern']">Enter a valid phone number. Only numbers allowed: minimum length 10.</p>
                 
                 </div> 
              </div>
                        
             <div class="form-group">
                 <label for="userName">User Name</label>
-                <input required formControlName="userName" minlength="6" type="text"  id="userName" name="userName" placeholder="User Name" class="form-control"/>
+                <input required formControlName="userName" minlength="6" type="text"  id="userName" name="userName" placeholder="Username" class="form-control"/>
                 <div *ngIf="userName?.invalid && userName?.touched" class="text-danger">
-                    <p *ngIf="userName?.errors?.['required']">User Name required</p>
-                    <p *ngIf="userName?.errors?.['minlength']">Too short User Name</p>
+                    <p *ngIf="userName?.errors?.['required']">Username required</p>
+                    <p *ngIf="userName?.errors?.['minlength']">Username too short. At least 6 characters.</p>
                     
                       
                 </div> 
@@ -158,12 +158,12 @@
             <div class="form-group">
 
                 <label for="socialSecurity">Social Security</label>
-                <input required maxlength="10" minlength="10" type="text" id="socialSecurity" formControlName="socialSecurity" placeholder="Social Security" class="form-control"/>
+                <input required maxlength="9" minlength="9" type="text" id="socialSecurity" formControlName="socialSecurity" placeholder="Social Security" class="form-control"/>
                 <div *ngIf="socialSecurity?.invalid && socialSecurity?.touched" class="text-danger">
                     <p *ngIf="socialSecurity?.errors?.['required']">Social Security required</p>
-                    <p *ngIf="socialSecurity?.errors?.['minlength']">Social security length should be 10</p>
+                    <p *ngIf="socialSecurity?.errors?.['minlength']">Social security length should be exactly 9</p>
                     <p *ngIf="socialSecurity?.errors?.['pattern']">
-                        Only Numbers are allowed</p>
+                        Only numbers are allowed</p>
                 </div>
             
             </div>

@@ -42,7 +42,7 @@ export class HttpclientService {
   
     const headers = new HttpHeaders({ Authorization: 'Basic ' + btoa(username + ':' + password) });
     
-    return this.httpClient.get<Customer[]>('http://localhost:8080/customers',{headers});
+    return this.httpClient.get<Customer[]>('http://localhost:8080/customer',{headers});
     //return this.httpClient.get<Customer[]>('http://localhost:8080/customers');
   }
 
@@ -51,8 +51,16 @@ export class HttpclientService {
     let password='password'
   
     const headers = new HttpHeaders({ Authorization: 'Basic ' + btoa(username + ':' + password) });
-    return this.httpClient.post<Customer>("http://localhost:8080/customers", customer,{headers});
+    return this.httpClient.post<Customer>("https://creditgroup1-spring-docker.azurewebsites.net/customer", customer,{headers});
     //return this.httpClient.post<Customer>("http://localhost:8080/customers", customer);
+  }
+
+  public getCustomerAccount() {
+    return this.httpClient.get<Customer>('https://creditgroup1-spring-docker.azurewebsites.net/account/get?id=123456');
+  }
+  
+  public getCustomerStatementsAndCreditScore() {
+    return this.httpClient.get('https://creditgroup1-spring-docker.azurewebsites.net/statement/getByAccount?id=123456');
   }
 
   public getUserName(username:string){
