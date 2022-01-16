@@ -1,58 +1,21 @@
 
-<div class="row d-flex justify-content-center flex-nowrap mt-10 mb-50" style="background-color: #508bfc;">
+<h1 class="text-center" style="background-color: #508bfc !important;color: #fff;font-size: 30px;padding:30px">Apply for Credit Account</h1>
+<!-- mt-10 mb-50" style="background-color: #508bfc; -->
+<div class="row d-flex justify-content-center flex-nowrap ">
 <div class="col-md-6">
-    <h2>Apply for Credit Account</h2>
+    <!-- <h2 class="mt-3 text-white">Apply for Credit Account</h2> -->
     <br>
 
-    <form [formGroup]="exform">  
+    <form [formGroup]="creditApplicationForm">  
         <div  *ngIf="pinfoSection">
-            <!-- <div class="form-group">
-
-                <label for="accountNumber">Account Number</label>
-                <input required minlength="2" formControlName="accountNumber" type="text"  placeholder="Account Number" class="form-control" />
-               
-                <div *ngIf="accountNumber?.invalid && accountNumber?.touched" class="text-danger">
-                    <p *ngIf="accountNumber?.errors?.['required']">Account Number required</p>
-                    <p *ngIf="accountNumber?.errors?.['pattern']">
-                        Only Numbers are allowed</p>
-                </div>
-                
-            </div>
-
-          
-            <div class="form-group">
-                <label for="balance">Balance</label>
-                <input required formControlName="balance" type="text"  id="balance" placeholder="Balance" class="form-control" />
-
-                <div *ngIf="balance?.invalid && balance?.touched" class="text-danger">
-                    <p *ngIf="balance?.errors?.['required']">Balance required</p>
-                    <p *ngIf="balance?.errors?.['pattern']">
-                        Only Numbers are allowed</p>
-                </div>
-                   
-            </div> 
             
-            <div class="form-group">
-
-                <label for="remianingCredit">Remianing Credit</label>
-                <input required formControlName="remianingCredit" type="text" placeholder="Remaining Credit" class="form-control" />
-
-                <div *ngIf="remianingCredit?.invalid && remianingCredit?.touched" class="text-danger">
-                    <p *ngIf="remianingCredit?.errors?.['required']">Remaining Credit required</p>
-                    <p *ngIf="remianingCredit?.errors?.['pattern']">
-                        Only Numbers are allowed</p>
-                </div>
-                   
-            </div>  -->
-
-         
             <div class="form-group">
                 <label for="firstName">First Name</label>        
                 <input required formControlName="firstName" minlength="2" type="text" id="firstName" placeholder="First Name" class="form-control" />
-                <div *ngIf="firstName?.invalid && firstName?.touched" class="text-danger">
-                    <p *ngIf="firstName?.errors?.['required']">First name required</p>
-                    <p *ngIf="firstName?.errors?.['minlength']">First name too short</p>
-                    <p *ngIf="firstName?.errors?.['pattern']">
+                <div *ngIf="creditCardReactiveForm.firstName?.invalid && creditCardReactiveForm.firstName?.touched" class="text-danger">
+                    <p *ngIf="creditCardReactiveForm.firstName?.errors?.['required']">First name required</p>
+                    <p *ngIf="creditCardReactiveForm.firstName?.errors?.['minlength']">First name too short</p>
+                    <p *ngIf="creditCardReactiveForm.firstName?.errors?.['pattern']">
                         Only characters are allowed</p>
                       
                 </div> 
@@ -64,10 +27,10 @@
 
                 <label for="middleName">Middle Name</label>
                 <input required formControlName="middleName" minlength="2" type="text"  id="middleName" name="middleName"  placeholder="Middle Name" class="form-control"/>
-                <div *ngIf="middleName?.invalid && middleName?.touched" class="text-danger">
-                    <p *ngIf="middleName?.errors?.['required']">Middle name required</p>
-                    <p *ngIf="middleName?.errors?.['minlength']">Middle name too short</p>
-                    <p *ngIf="middleName?.errors?.['pattern']">
+                <div *ngIf="creditCardReactiveForm.middleName?.invalid && creditCardReactiveForm.middleName?.touched" class="text-danger">
+                    <p *ngIf="creditCardReactiveForm.middleName?.errors?.['required']">Middle name required</p>
+                    <p *ngIf="creditCardReactiveForm.middleName?.errors?.['minlength']">Middle name too short</p>
+                    <p *ngIf="creditCardReactiveForm.middleName?.errors?.['pattern']">
                         Only letters are allowed</p>
                       
                 </div> 
@@ -78,10 +41,10 @@
             <div class="form-group">
                 <label for="lname">Last Name</label>
                 <input required formControlName="lastName" type="text" id="lastName" name="lastName" placeholder="Last Name" class="form-control"/>
-                <div *ngIf="lastName?.invalid && lastName?.touched" class="text-danger">
-                    <p *ngIf="lastName?.errors?.['required']">Last name required</p>
-                    <p *ngIf="lastName?.errors?.['minlength']">Last name too short</p>
-                    <p *ngIf="lastName?.errors?.['pattern']">
+                <div *ngIf="creditCardReactiveForm.lastName?.invalid && creditCardReactiveForm.lastName?.touched" class="text-danger">
+                    <p *ngIf="creditCardReactiveForm.lastName?.errors?.['required']">Last name required</p>
+                    <p *ngIf="creditCardReactiveForm.lastName?.errors?.['minlength']">Last name too short</p>
+                    <p *ngIf="creditCardReactiveForm.lastName?.errors?.['pattern']">
                         Only letters are allowed</p>
                       
                 </div> 
@@ -91,21 +54,21 @@
             <div class="form-group">
                 <label class="col-form-label">Email:</label>
                 <input required formControlName="email" type="text" placeholder="Email address" class="form-control" >
-                <div *ngIf="email?.invalid && email?.touched" class="text-danger">
-                  <p *ngIf="email?.errors?.['required']">Email address required</p>
-                  <p *ngIf="email?.errors?.['pattern']">Enter a valid email address</p>
+                <div *ngIf="creditCardReactiveForm.email?.invalid && creditCardReactiveForm.email?.touched" class="text-danger">
+                  <p *ngIf="creditCardReactiveForm.email?.errors?.['required']">Email address required</p>
+                  <p *ngIf="creditCardReactiveForm.email?.errors?.['pattern']">Enter a valid email address</p>
                 
                 </div> 
               </div>
 
               <div class="form-group">
                 <label class="col-form-label">Phone:</label>
-                <input required formControlName="phone" minlength="10" placeholder="(***)-***-****" type="text" class="form-control" >
+                <input required formControlName="phone" maxlength="10" placeholder="(***)-***-****" type="text" class="form-control" >
 
-                <div *ngIf="phone?.invalid && phone?.touched" class="text-danger">
-                  <p *ngIf="phone?.errors?.['required']">Phone number is required</p>
-                  <!-- <p *ngIf="phone?.errors?.['minlength']">Enter Valid phone numbers,only numbers allowed minimum length 10</p> -->
-                  <p *ngIf="phone?.errors?.['pattern']">Enter a valid phone number. Only numbers allowed: minimum length 10.</p>
+                <div *ngIf="creditCardReactiveForm.phone?.invalid && creditCardReactiveForm.phone?.touched" class="text-danger">
+                  <p *ngIf="creditCardReactiveForm.phone?.errors?.['required']">Phone number is required</p>
+                  <p *ngIf="creditCardReactiveForm.phone?.errors?.['maxlength']">Phone maximum number is 10</p>
+                  <p *ngIf="creditCardReactiveForm.phone?.errors?.['pattern']">Enter a valid phone number. Only numbers allowed: minimum length 10.</p>
                 
                 </div> 
              </div>
@@ -113,9 +76,9 @@
             <div class="form-group">
                 <label for="userName">User Name</label>
                 <input required formControlName="userName" minlength="6" type="text"  id="userName" name="userName" placeholder="Username" class="form-control"/>
-                <div *ngIf="userName?.invalid && userName?.touched" class="text-danger">
-                    <p *ngIf="userName?.errors?.['required']">Username required</p>
-                    <p *ngIf="userName?.errors?.['minlength']">Username too short. At least 6 characters.</p>
+                <div *ngIf="creditCardReactiveForm.userName?.invalid && creditCardReactiveForm.userName?.touched" class="text-danger">
+                    <p *ngIf="creditCardReactiveForm.userName?.errors?.['required']">Username required</p>
+                    <p *ngIf="creditCardReactiveForm.userName?.errors?.['minlength']">Username too short. At least 6 characters.</p>
                     
                       
                 </div> 
@@ -126,13 +89,31 @@
                 <label for="password">Password</label>
                 <input required type="password"  id="password" formControlName="password" placeholder="Password" class="form-control"/>
 
-                <div *ngIf="password?.invalid && password?.touched" class="text-danger">
-                    <p *ngIf="password?.errors?.['required']">Password required</p>
+                <div *ngIf="creditCardReactiveForm.password?.invalid && creditCardReactiveForm.password?.touched" class="text-danger">
+                    <p *ngIf="creditCardReactiveForm.password?.errors?.['required']">Password required</p>
                     <!-- <p *ngIf="password?.errors?.['minlength']">Minimum of 6 required/p> -->
                     
-                    <p *ngIf="password?.errors?.['pattern']">
-                        Password length minimum should be 6 characters and contain atleast one  umbers, uppercase and lower case letters and special characters
+                    <p *ngIf="creditCardReactiveForm.password?.errors?.['pattern']">
+                        minimum of 6 characters and contain atleast one number, uppercase, lower case and special characters
                         
+                    </p>
+                        
+                    
+                      
+                </div> 
+            </div>
+
+
+            <div class="form-group">
+                <label for="confirmpassword">Confirm Password</label>
+                <input required type="password"  id="confirmpassword" formControlName="confirmpassword" placeholder="Confirm Password" class="form-control"/>
+
+                <div *ngIf="creditCardReactiveForm.confirmpassword?.invalid && creditCardReactiveForm.confirmpassword?.touched" class="text-danger">
+                    <p *ngIf="creditCardReactiveForm.confirmpassword?.errors?.['required']">Confrim Password required</p>
+                    <!-- <p *ngIf="password?.errors?.['minlength']">Minimum of 6 required/p> -->
+                    
+                    <p *ngIf="creditCardReactiveForm.confirmpassword?.errors?.passwordMatch">
+                       Confirm Password must match with Password
                     </p>
                         
                     
@@ -147,8 +128,8 @@
                 <label for="birthDate">Date of Birth</label>
                 <input required type='date' id="birthDate" formControlName="birthDate" placeholder="Date of Birth" class="form-control"/>
 
-                <div *ngIf="birthDate?.invalid && birthDate?.touched" class="text-danger">
-                    <p *ngIf="birthDate?.errors?.['required']">Birth Date required</p>
+                <div *ngIf="creditCardReactiveForm.birthDate?.invalid && creditCardReactiveForm.birthDate?.touched" class="text-danger">
+                    <p *ngIf="creditCardReactiveForm.birthDate?.errors?.['required']">Birth Date required</p>
                     
                 </div> 
 
@@ -159,10 +140,10 @@
 
                 <label for="socialSecurity">Social Security</label>
                 <input required maxlength="9" minlength="9" type="text" id="socialSecurity" formControlName="socialSecurity" placeholder="Social Security" class="form-control"/>
-                <div *ngIf="socialSecurity?.invalid && socialSecurity?.touched" class="text-danger">
-                    <p *ngIf="socialSecurity?.errors?.['required']">Social Security required</p>
-                    <p *ngIf="socialSecurity?.errors?.['minlength']">Social security length should be exactly 9</p>
-                    <p *ngIf="socialSecurity?.errors?.['pattern']">
+                <div *ngIf="creditCardReactiveForm.socialSecurity?.invalid && creditCardReactiveForm.socialSecurity?.touched" class="text-danger">
+                    <p *ngIf="creditCardReactiveForm.socialSecurity?.errors?.['required']">Social Security required</p>
+                    <p *ngIf="creditCardReactiveForm.socialSecurity?.errors?.['minlength']">Social security length should be exactly 9</p>
+                    <p *ngIf="creditCardReactiveForm.socialSecurity?.errors?.['pattern']">
                         Only numbers are allowed</p>
                 </div>
             
@@ -172,12 +153,47 @@
                 <div class="form-group">
                     <label for="address">Address</label>
                     <input required type="text" minlength="6"  id="address" formControlName="address" placeholder="Address" class="form-control" />
-                    <div *ngIf="address?.invalid && address?.touched" class="text-danger">
-                        <p *ngIf="address?.errors?.['required']">Adress required</p>
-                        <p *ngIf="address?.errors?.['minlength']">Too short adress name</p>
+                    <div *ngIf="creditCardReactiveForm.address?.invalid && creditCardReactiveForm.address?.touched" class="text-danger">
+                        <p *ngIf="creditCardReactiveForm.address?.errors?.['required']">Adress required</p>
+                        <p *ngIf="creditCardReactiveForm.address?.errors?.['minlength']">Too short adress name</p>
                         
                     </div>
                 </div>
+
+                <div class="form-group">
+                    <label for="city">City</label>
+                    <input required type="text" minlength="2"  id="city" formControlName="city" placeholder="City" class="form-control" />
+                    <div *ngIf="creditCardReactiveForm.city?.invalid && creditCardReactiveForm.city?.touched" class="text-danger">
+                        <p *ngIf="creditCardReactiveForm.city?.errors?.['required']">City required</p>
+                        <p *ngIf="creditCardReactiveForm.city?.errors?.['minlength']">Too short City name</p>
+                        
+                    </div>
+                </div>
+
+                <div class="form-group">
+                    <label for="state">State</label>
+                    <input required type="text" minlength="2"  id="state" formControlName="state" placeholder="state" class="form-control" />
+                    <div *ngIf="creditCardReactiveForm.state?.invalid && creditCardReactiveForm.state?.touched" class="text-danger">
+                        <p *ngIf="creditCardReactiveForm.state?.errors?.['required']">State required</p>
+                        <p *ngIf="creditCardReactiveForm.state?.errors?.['minlength']">Too short State name</p>
+                        
+                    </div>
+                </div>
+
+                <div class="form-group">
+
+                    <label for="zipcode">zipcode </label>
+                    <input required maxlength="5" minlength="5" type="text" id="zipcode" formControlName="zipcode" placeholder="Zip Code" class="form-control"/>
+                    <div *ngIf="creditCardReactiveForm.zipcode?.invalid && creditCardReactiveForm.zipcode?.touched" class="text-danger">
+                        <p *ngIf="creditCardReactiveForm.zipcode?.errors?.['required']">Zip Code required</p>
+                        <p *ngIf="creditCardReactiveForm.zipcode?.errors?.['minlength']">Zip Code should be exactly 5</p>
+                       
+                        <p *ngIf="creditCardReactiveForm.zipcode?.errors?.['pattern']">
+                            Only numbers are allowed</p>
+                    </div>
+                
+                </div>
+    
              <br>
              <button type="button" class="btn btn-danger mr-5"><a routerLink="">Cancel</a></button>
             <button class="btn btn-primary" (click)= 'toEmpSection()'>Next</button>
@@ -192,10 +208,10 @@
 
                 <label for="companyName">Company Name</label>
                 <input required type="text" minlength="2" id="companyName" formControlName="companyName" placeholder="Company Name" class="form-control"/>
-                <div *ngIf="companyName?.invalid && companyName?.touched" class="text-danger">
-                    <p *ngIf="companyName?.errors?.['required']">Company Name required</p>
-                    <p *ngIf="companyName?.errors?.['minlength']">Too short Company Name</p>
-                    <p *ngIf="companyName?.errors?.['pattern']">
+                <div *ngIf="creditCardReactiveForm.companyName?.invalid && creditCardReactiveForm.companyName?.touched" class="text-danger">
+                    <p *ngIf="creditCardReactiveForm.companyName?.errors?.['required']">Company Name required</p>
+                    <p *ngIf="creditCardReactiveForm.companyName?.errors?.['minlength']">Too short Company Name</p>
+                    <p *ngIf="creditCardReactiveForm.companyName?.errors?.['pattern']">
                         Only Letters are allowed</p>
                     
                       
@@ -206,9 +222,9 @@
             <div class="form-group">
                 <label for="salary">Annual Salary</label>
                 <input type="text" required formControlName="salary" formControlName="salary"  placeholder="Salary" class="form-control"/>
-                <div *ngIf="salary?.invalid && salary?.touched" class="text-danger">
-                    <p *ngIf="salary?.errors?.['required']">Salaryrequired</p>
-                    <p *ngIf="salary?.errors?.['pattern']">
+                <div *ngIf="creditCardReactiveForm.salary?.invalid && creditCardReactiveForm.salary?.touched" class="text-danger">
+                    <p *ngIf="creditCardReactiveForm.salary?.errors?.['required']">Salaryrequired</p>
+                    <p *ngIf="creditCardReactiveForm.salary?.errors?.['pattern']">
                         Only Numbers are allowed</p>
                 </div>
             </div>
@@ -217,10 +233,10 @@
             <div class="form-group">
                 <label for="emptField">Field of Employment</label>
                 <input type="text" required minlength="2" id="emptField" formControlName="emptField" placeholder="Field" class="form-control"/>
-                <div *ngIf="emptField?.invalid && emptField?.touched" class="text-danger">
-                    <p *ngIf="emptField?.errors?.['required']">Field of Employmentrequired</p>
-                    <p *ngIf="emptField?.errors?.['minlength']">Too short Field of Employment Name</p>
-                    <p *ngIf="emptField?.errors?.['pattern']">
+                <div *ngIf="creditCardReactiveForm.emptField?.invalid && creditCardReactiveForm.emptField?.touched" class="text-danger">
+                    <p *ngIf="creditCardReactiveForm.emptField?.errors?.['required']">Field of Employmentrequired</p>
+                    <p *ngIf="creditCardReactiveForm.emptField?.errors?.['minlength']">Too short Field of Employment Name</p>
+                    <p *ngIf="creditCardReactiveForm.emptField?.errors?.['pattern']">
                         Only Letters are allowed</p>
                     
                       
@@ -233,9 +249,9 @@
                 <label for="lengthOfEmployment">Length of Employment</label>
                 <input required id="lengthOfEmployment"  formControlName="lengthOfEmployment" placeholder="Employee Length" class="form-control"/>
 
-                <div *ngIf="lengthOfEmployment?.invalid && lengthOfEmployment?.touched" class="text-danger">
-                    <p *ngIf="lengthOfEmployment?.errors?.['required']">Length of Employment required</p>
-                    <p *ngIf="lengthOfEmployment?.errors?.['pattern']">
+                <div *ngIf="creditCardReactiveForm.lengthOfEmployment?.invalid && creditCardReactiveForm.lengthOfEmployment?.touched" class="text-danger">
+                    <p *ngIf="creditCardReactiveForm.lengthOfEmployment?.errors?.['required']">Length of Employment required</p>
+                    <p *ngIf="creditCardReactiveForm.lengthOfEmployment?.errors?.['pattern']">
                         Only Numbers are allowed</p>
                 </div>
             </div>
@@ -246,10 +262,10 @@
             <div class="form-group">
                 <label for="referenceOneName"> Reference 1 Full Name</label>
                 <input required type="text" id="referenceOneName" minlength="2" formControlName="referenceOneName" placeholder="Reference One Name"  class="form-control"/>
-                <div *ngIf="referenceOneName?.invalid && referenceOneName?.touched" class="text-danger">
-                    <p *ngIf="referenceOneName?.errors?.['required']">Reference One Name required</p>
-                    <p *ngIf="referenceOneName?.errors?.['minlength']">Too short Reference One Name</p>
-                    <p *ngIf="referenceOneName?.errors?.['pattern']">
+                <div *ngIf="creditCardReactiveForm.referenceOneName?.invalid && creditCardReactiveForm.referenceOneName?.touched" class="text-danger">
+                    <p *ngIf="creditCardReactiveForm.referenceOneName?.errors?.['required']">Reference One Name required</p>
+                    <p *ngIf="creditCardReactiveForm.referenceOneName?.errors?.['minlength']">Too short Reference One Name</p>
+                    <p *ngIf="creditCardReactiveForm.referenceOneName?.errors?.['pattern']">
                         Only Letters are allowed</p>
                     
                       
@@ -263,10 +279,10 @@
                 <input type="text" id="referenceOnePhoneNumb"  formControlName="referenceOnePhoneNumb" placeholder="Phone Number" class="form-control"/>
 
                 <br> 
-                <div *ngIf="referenceOnePhoneNumb?.invalid && referenceOnePhoneNumb?.touched" class="text-danger">
-                    <p *ngIf="referenceOnePhoneNumb?.errors?.['required']">Phone no is Required</p>
+                <div *ngIf="creditCardReactiveForm.referenceOnePhoneNumb?.invalid && creditCardReactiveForm.referenceOnePhoneNumb?.touched" class="text-danger">
+                    <p *ngIf="creditCardReactiveForm.referenceOnePhoneNumb?.errors?.['required']">Phone no is Required</p>
                     <!-- <p *ngIf="phone?.errors?.['minlength']">Enter Valid phone numbers,only numbers allowed minimum length 10</p> -->
-                    <p *ngIf="referenceOnePhoneNumb?.errors?.['pattern']">Enter Valid phone numbers,only numbers allowed minimum length 10</p>
+                    <p *ngIf="creditCardReactiveForm.referenceOnePhoneNumb?.errors?.['pattern']">Enter Valid phone numbers,only numbers allowed minimum length 10</p>
                   
                   </div> 
                 
@@ -277,10 +293,10 @@
                 
                 <label for="referenceTwoName"> Reference 2 Full Name</label>
                 <input required minlength="2"type="text" id="referenceTwoName"  formControlName="referenceTwoName" placeholder="Reference Two Name" class="form-control"/>
-                <div *ngIf="referenceTwoName?.invalid && referenceTwoName?.touched" class="text-danger">
-                    <p *ngIf="referenceTwoName?.errors?.['required']">Reference One Name required</p>
-                    <p *ngIf="referenceTwoName?.errors?.['minlength']">Too short Reference One Name</p>
-                    <p *ngIf="referenceTwoName?.errors?.['pattern']">
+                <div *ngIf="creditCardReactiveForm.referenceTwoName?.invalid && creditCardReactiveForm.referenceTwoName?.touched" class="text-danger">
+                    <p *ngIf="creditCardReactiveForm.referenceTwoName?.errors?.['required']">Reference One Name required</p>
+                    <p *ngIf="creditCardReactiveForm.referenceTwoName?.errors?.['minlength']">Too short Reference One Name</p>
+                    <p *ngIf="creditCardReactiveForm.referenceTwoName?.errors?.['pattern']">
                         Only Letters are allowed</p>
                     
                     
@@ -293,38 +309,29 @@
                 
                 <label for="referenceTwoPhoneNumb"> Reference Two Phone Number</label>
                 <input required type="text" id="referenceTwoPhoneNumb"  formControlName="referenceTwoPhoneNumb" placeholder="Phone Number" class="form-control"/>
-                <div *ngIf="referenceTwoPhoneNumb?.invalid && referenceTwoPhoneNumb?.touched" class="text-danger">
-                    <p *ngIf="referenceTwoPhoneNumb?.errors?.['required']">Phone no is Required</p>
+                <div *ngIf="creditCardReactiveForm.referenceTwoPhoneNumb?.invalid && creditCardReactiveForm.referenceTwoPhoneNumb?.touched" class="text-danger">
+                    <p *ngIf="creditCardReactiveForm.referenceTwoPhoneNumb?.errors?.['required']">Phone no is Required</p>
                     <!-- <p *ngIf="phone?.errors?.['minlength']">Enter Valid phone numbers,only numbers allowed minimum length 10</p> -->
-                    <p *ngIf="referenceTwoPhoneNumb?.errors?.['pattern']">Enter Valid phone numbers,only numbers allowed minimum length 10</p>
+                    <p *ngIf="creditCardReactiveForm.referenceTwoPhoneNumb?.errors?.['pattern']">Enter Valid phone numbers,only numbers allowed minimum length 10</p>
                   
                   </div> 
                 <br>
             </div> 
                 
 
-                <!-- 
                
-                <!-- <div class = "form-check form-group">
-                    <input class="form-check-input" type ="checkbox" id="sAccess" name= "sAccess" [(ngModel)]="isSecondary"> 
-                    <label class ="form-check-label" for="sAccess">Secondary Account Access</label>
-                </div>
-
-                <div class="form-group" *ngIf="isSecondary">  
-                    <label for="secEmail">Secondary Email</label>
-                    <input type="email" id="secEmail" [(ngModel)]name="secEmail" class="form-control"/>
-
-                </div>-->
                 <br>
+                
                 <div class = "form-check form-group">
-                    <input class="form-check-input" type ="checkbox" id="isAccept" formControlName= "isAccept"  > 
-                    <label class ="form-check-label" for="isAccept">Agree To Company's terms & Conditions</label>
+                    <mat-checkbox class="example-margin" (click)="openDialog()" id="isAccept" formControlName= "isAccept"></mat-checkbox>
+                    <!-- <input class="form-check-input" type ="checkbox" id="isAccept" formControlName= "isAccept"  --> 
+                    <label class ="form-check-label ml-2" for="isAccept">Agree To Company's terms & Conditions</label>
                     <!-- <div style="color: red; padding-top: 0.2rem" *ngIf="isAccept?.hasError('required', 'isAccept')">
                         Required
                       </div>
                       <hr> -->
-                    <div *ngIf="isAccept?.invalid && isAccept?.touched" class="text-danger">
-                        <p *ngIf="isAccept?.errors?.['required']">You must click to agree to Company terms and Condtions</p>
+                    <div *ngIf="creditCardReactiveForm.isAccept?.invalid && creditCardReactiveForm.isAccept?.touched" class="text-danger">
+                        <p *ngIf="creditCardReactiveForm.isAccept?.errors?.['required']">You must click to agree to Company terms and Condtions</p>
                         
                       </div> 
                 </div> 
@@ -332,10 +339,11 @@
             <!-- </div> -->
             <br>
             <button type="button" class="btn btn-danger mr-5 mb-10" (click)= "onBack()">Back</button>
-            <button type="button" class="btn btn-primary mb-10" [disabled]="exform.invalid">Apply</button>
+            <button type="button" class="btn btn-primary mb-10" [disabled]="creditApplicationForm.invalid">Apply</button>
             <!-- <div class="container" style="height: 10px;"></div>-->
             <br>
             <br> 
+            
             <!-- <button type="button" class="btn btn-primary" [disabled]="exform.invalid" (click)="createCustomerCredit()">Apply</button>-->
     </div> 
 </form>

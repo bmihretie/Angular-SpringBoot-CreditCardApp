@@ -1,17 +1,18 @@
 
 
-<div class="row d-flex justify-content-center align-items-center " style="background-color: #508bfc;" id="wrapper">
+<h1 class="text-center" style="background-color: #508bfc !important;color: #fff;font-size: 30px;padding:30px">Sign in </h1>
+<div class="row d-flex justify-content-center align-items-center "  id="wrapper">
     <div class="col-12 col-md-8 col-lg-6 col-xl-5 p-5 mb-5 ">
         <div class="card shadow-2-strong" style="border-radius: 1rem;">
             <h1 class="mb-100"></h1>
             <div class="card-body p-5 pt-70 pb-70 text-center">
                 
-                Username:<input type="text" class="mb-2" name="username" [(ngModel)]="username"><br/>
+                User Name:<input type="text" class="mb-2" name="username" [(ngModel)]="username"><br/>
                 Password: <input type="password" class="mb-2" name="password" [(ngModel)]="password"><br/>
 
                 <div class="text-center">
                     <button type="button" class="btn btn-danger mr-5"><a routerLink="">Cancel</a></button>
-                    <button (click)='verify()'  class="btn btn-primary text-center m-8">Login</button>
+                    <button (click)='verify()'  class="btn btn-primary text-center">Login</button>
                 </div>
 
                 

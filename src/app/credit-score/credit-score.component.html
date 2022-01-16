@@ -1,29 +1,59 @@
 
+<h1 class="text-center" style="background-color: #508bfc !important;color: #fff;font-size: 30px;padding:30px"> Here is your Credit Score and History</h1>
 
-   <div class="col-md-12" id="wrapper" >
+<div class="container mb-3">
 
-    <h1 class="text-center">Credit Score History</h1>
-<table class="table table-striped">
-    <thead>
-        <tr>
-            <th>Credit Score</th>
-            <th>Month / Year</th>
-            <th>Description about your Credit Score</th>
-        </tr>
-    </thead>
+    <h2 class="text-center">Current Credit Score:</h2>
    
-    <tbody>
-        <tr *ngFor="let creditScore of creditScores">
-            <td>{{creditScore.creditScore}}</td>
-            <td>{{creditScore.statementDate | date: 'MMMM yyyy'}}</td>
-            <td>Your credit score increased due to a decrease in overall balance and timely monthly payments.</td>
-        </tr>
-    </tbody>
-
-</table>
+    <button type="button" class="btn btn-info btn-lg btn-block mb-10" style="color: #fff;height: 60px;">{{creditScores[0].creditScore}}</button>
 
 
+</div>
 
+<hr>
+<button type="button" class="btn btn-primary" data-toggle="button"  data-text-alt="- hide details" aria-pressed="true" autocomplete="on" (click)="toggleCreditHistoryShow()" style="margin-left: 20px;height:60px" >
+   
+    {{buttonName}}
+   
+  </button>
+
+
+<div id="wrapper">
+<div class="mat-elevation-z8 text-center"  [hidden]="!isCreditHistoryShown">
+    <table class="table table-striped" mat-table [dataSource]="dataSource">
+  
+      <ng-container matColumnDef="creditScore"> 
+        <th class="text-center" mat-header-cell *matHeaderCellDef> Credit Score </th>
+        <td class="text-center" mat-cell *matCellDef="let element"> {{element.creditScore}} </td>
+      </ng-container>
+  
+     
+      <ng-container matColumnDef="statementDate">
+        <th class="text-center" mat-header-cell *matHeaderCellDef> Month/Year</th>
+        <td class="text-center" mat-cell *matCellDef="let element"> {{element.statementDate | date: 'MMMM yyyy'}} </td>
+      </ng-container>
+  
+     
+      <ng-container matColumnDef="description">
+        <th class="text-center" mat-header-cell *matHeaderCellDef> Description about your Credit Score </th>
+        <td class="text-center" mat-cell *matCellDef="let element"> Your credit score increased due to a decrease in overall balance and timely monthly payments </td>
+      </ng-container> 
+  
+      
+  
+      <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+      <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
+    </table>
+
+  
+    <mat-paginator #paginator
+                   [pageSizeOptions]="[5, 10, 20]"
+                   showFirstLastButtons 
+                   [pageSize]="1"
+                   
+                   aria-label="Select page">
+    </mat-paginator>
+  </div>
 
 </div>
 

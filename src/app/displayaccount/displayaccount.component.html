@@ -1,115 +1,98 @@
 
-<h1 style="margin-left: 5px;">Account Information</h1>
-<div class="col-md-6" id="wrapper" *ngIf="pinfoSection" style="margin-left: 5px">
+<h1 class="text-center" style="background-color: #508bfc !important;color: #fff;font-size: 30px;padding:30px">Account Information</h1>
 
-<table class="table table-striped" [(ngModel)]=account>
-    <tr>
-      <th>Name:</th>
-      <td>{{account.customer.firstName}} {{account.customer.middleName}} {{account.customer.lastName}}</td>
-    </tr>
-    <tr>
-        <th>Phone Number:</th>
-        <td>{{account.customer.phoneNumber}}</td>
-      </tr>
-    <tr>
-      <th>Member Since:</th>  
-      <td>{{account.creationDate | date}}</td>      
-    </tr>  
-    <tr>
-      <th>Account Number:</th>
-      <td>{{account.accountId}}</td>
-    </tr>
-    <tr>
-        <th>Most Recent Credit Score:</th>
-        <td>{{account.customer.creditScore}}</td>
-    </tr>
-    <tr>
-        <th>Balance:</th>
-        <td>${{account.totalCredit}}</td>
-    </tr>
-    <tr>
-        <th>Credit Remaining:</th>
-        <td>${{account.remainingCredit}}</td>
-    </tr>
-  </table>
-
-
-<button class="btn btn-primary" (click)= 'toEmpSection()'>Next</button>
-</div>
-
-<div id="wrapper1" *ngIf= "empSection" class=" justify-content-center">
-
-    <h1>Transaction History for the past 30 days</h1>
-
-    <table class="table table-striped">
-        <thead>
+<div class="row" id="wrapper">
+    <div class="col-md-6">
+        <table class="table table-striped" [(ngModel)]=account>
             <tr>
-                <th>Transaction ID </th>
-                <th>Transaction Amount</th>
-                <th>Transaction Date</th>
-                <!-- <th>Account Number</th>
-                <th>Balance</th>
-                <th>Rmaining Credit</th> -->
+              <th>Name:</th>
+              <td>{{account.customer.firstName}} {{account.customer.middleName}} {{account.customer.lastName}}</td>
             </tr>
-        </thead>
-       
-        <tbody>
             <tr>
-                <td>ID1005</td>
-                <td>270.67</td>
-                <td>02/20/2020</td>
-                <!-- <td></td>
-                <td></td>
-                <td></td> -->
+                <th>Phone Number:</th>
+                <td>{{account.customer.phoneNumber}}</td>
+              </tr>
+            <tr>
+              <th>Member Since:</th>  
+              <td>{{account.creationDate | date}}</td>      
+            </tr>  
+            <tr>
+              <th>Account Number:</th>
+              <td>{{account.accountId}}</td>
             </tr>
-            
-        </tbody>
+            <tr>
+                <th>Most Recent Credit Score:</th>
+                <td>{{account.customer.creditScore}}</td>
+            </tr>
+            <tr>
+                <th>Balance:</th>
+                <td>${{account.totalCredit}}</td>
+            </tr>
+            <tr>
+                <th>Credit Remaining:</th>
+                <td>${{account.remainingCredit}}</td>
+            </tr>
+          </table>
+        
+
+    </div>
+
+    <div class="col-md-6">
+        <div class="d-flex align-items-center justify-content-center" style="height: 350px" >
     
-    </table>
-    
-    <br>
-    <div class="d-flex justify-content-center" >
-    <!-- <button type="button" class="btn btn-danger mr-5" (click)= "onBack()">Back</button> -->
-    <button type="button" class="btn btn-primary mr-5" (click)='toEmpSection1()' >Previous 3o days</button>
-    <button type="button" class="btn btn-success mr-5" routerLink="/creditScore">Credit Score</button>
-    <button type="button" class="btn btn-info" routerLink="/transaction">Statements</button>
+          
+            <button type="button" class="btn btn-success mr-5" routerLink="/creditScore">Get Credit Score</button>
+            <button type="button" class="btn btn-info" routerLink="/transaction">Get Statements</button>
+            </div>
     </div>
     
-</div>
+  </div>
 
-<div id="wrapper1" *ngIf= "empSection1">
+  <hr>
 
-    <h1>Here is the summary of transactions for the last 30 days</h1>
 
-    <table class="table table-striped">
-        <thead>
-            <tr>
-                <th>Transaction ID </th>
-                <th>Transaction Amount</th>
-                <th>Transaction Date</th>
-                <!-- <th>Account Number</th>
-                <th>Balance</th>
-                <th>Rmaining Credit</th> -->
-            </tr>
-        </thead>
-       
-        <tbody>
-            <tr>
-                <td>ID1005</td>
-                <td>270.67</td>
-                <td>02/20/2020</td>
-                <!-- <td></td>
-                <td></td>
-                <td></td> -->
-            </tr>
-            
-        </tbody>
-        
+
+<div id="wrapper1"  class=" justify-content-center">
     
-    </table>
-    
-    <br>
 
-    <button type="button" class="btn btn-danger mr-5" (click)= "onBack1()">Back</button>
-    
+    <h1 class="text-center">Transaction History for the last 30 days</h1>
+
+    <div class="mat-elevation-z8 text-center">
+        <table class="table table-striped" mat-table [dataSource]="dataSource">
+      
+         
+          <ng-container matColumnDef="id">
+            <th class="text-center" mat-header-cell *matHeaderCellDef> Transaction ID. </th>
+            <td class="text-center" mat-cell *matCellDef="let element"> {{element.id}} </td>
+          </ng-container>
+      
+         
+          <ng-container matColumnDef="amount">
+            <th class="text-center" mat-header-cell *matHeaderCellDef> Transaction Amount </th>
+            <td class="text-center" mat-cell *matCellDef="let element"> {{element.amount}} </td>
+          </ng-container>
+      
+         
+          <ng-container matColumnDef="date">
+            <th class="text-center" mat-header-cell *matHeaderCellDef> Transaction Date </th>
+            <td class="text-center" mat-cell *matCellDef="let element"> {{element.date}} </td>
+          </ng-container>
+      
+          
+      
+          <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+          <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
+        </table>
+
+      
+        <mat-paginator #paginator
+                       [pageSizeOptions]="[5, 10, 20]"
+                       showFirstLastButtons 
+                       [pageSize]="30"
+                       
+                       aria-label="Select page">
+        </mat-paginator>
+      </div>
+      
+
 </div>

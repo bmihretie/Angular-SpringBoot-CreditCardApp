@@ -1,7 +1,11 @@
-#wrapper {
+/* #wrapper {
   min-height: calc(100vh - 50px);
-}
+} */
 
 #wrapper1 {
   min-height: calc(100vh - 50px);
+}
+
+table {
+  width: 100%;
 }
