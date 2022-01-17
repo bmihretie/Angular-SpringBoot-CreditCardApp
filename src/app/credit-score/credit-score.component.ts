@@ -16,7 +16,7 @@ export class CreditScoreComponent implements OnInit,AfterViewInit {
 
   // fields for toggling hide and show button for credit card history
   isCreditHistoryShown:boolean = false;
-  buttonName:string='Get Credit Score History';
+  buttonName:string='Show Credit Score History';
 
 
   // fields for pagination table column
@@ -56,7 +56,7 @@ export class CreditScoreComponent implements OnInit,AfterViewInit {
     
   }
   else{
-    this.buttonName='Get Credit Score History';
+    this.buttonName='Show Credit Score History';
   }
   
 
