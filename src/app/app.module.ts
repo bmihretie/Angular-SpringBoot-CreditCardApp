@@ -15,10 +15,22 @@ import { FooterComponent } from './footer/footer.component';
 import { HttpClientModule, HTTP_INTERCEPTORS } from '@angular/common/http';
 import { LogoutComponent } from './logout/logout.component';
 import { BasicauthhttpinterceptorService } from './service/basicauthhttpinterceptor.service';
+import {MatDialogModule} from '@angular/material/dialog';
+import { MatCheckboxModule } from '@angular/material/checkbox';
+
 
 import { AboutusComponent } from './aboutus/aboutus.component';
 import { TransactionStatementComponent } from './transaction-statement/transaction-statement.component';
 import { CreditScoreComponent } from './credit-score/credit-score.component';
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
+import {MatTableModule} from '@angular/material/table';
+import { MatPaginatorModule } from '@angular/material/paginator';
+import { MatSortModule } from '@angular/material/sort';
+import { MatNativeDateModule } from '@angular/material/core';
+import { TermsAndConditionsComponent } from './terms-and-conditions/terms-and-conditions.component';
+
+
+
 //import { FontAwesomeModule} from '@fortawesome/fontawesome-free';
 // import { fas } from '@fortawesome/free-solid-svg-icons';
 // import { far } from '@fortawesome/free-regular-svg-icons';
@@ -42,14 +54,24 @@ import { CreditScoreComponent } from './credit-score/credit-score.component';
     LogoutComponent,
     AboutusComponent,
     TransactionStatementComponent,
-    CreditScoreComponent
+    CreditScoreComponent,
+    TermsAndConditionsComponent
   ],
   imports: [
     BrowserModule,
     AppRoutingModule,
     FormsModule,
     ReactiveFormsModule,
-    HttpClientModule
+    HttpClientModule,
+    BrowserAnimationsModule,
+    MatTableModule,
+    MatSortModule,
+    MatPaginatorModule,
+    MatNativeDateModule,
+    MatDialogModule,
+    MatCheckboxModule,
+   
+   
     //FontAwesomeModule
    
     
@@ -60,7 +82,8 @@ import { CreditScoreComponent } from './credit-score/credit-score.component';
     //   provide:HTTP_INTERCEPTORS, useClass:BasicauthhttpinterceptorService, multi:true 
     // }
     ],
-  bootstrap: [AppComponent]
+  bootstrap: [AppComponent],
+  entryComponents:[TermsAndConditionsComponent]
 })
 
 export class AppModule {

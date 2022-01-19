@@ -1,7 +1,9 @@
 
 import { Component, OnInit } from '@angular/core';
-import { FormControl, FormGroup, Validators } from '@angular/forms';
+import { FormControl, FormGroup, Validators,FormBuilder} from '@angular/forms';
 import { Customer, HttpclientService } from '../service/httpclient.service';
+import { MatDialog,MatDialogConfig, MatDialogRef} from '@angular/material/dialog'; 
+import { TermsAndConditionsComponent } from '../terms-and-conditions/terms-and-conditions.component';
 
 
 @Component({
@@ -16,7 +18,7 @@ export class RegisterComponent implements OnInit {
   pinfoSection = true;
   empSection = false;
   isSecondary=false;
-  exform!: FormGroup;
+  creditApplicationForm!: FormGroup;
 
   user:Customer = new Customer("",0, 0,"","","","","","","","","","","","","","","");
  
@@ -40,20 +42,16 @@ export class RegisterComponent implements OnInit {
 
   numberRegEx =  /^-?\d+\.?\d*$/;
   stringRegEx =  /^[^0-9]+$/;
-  ///[^0-9]/g;
-  ///@"^[a-zA-Z]+$/;
-  passwordRegEx = /^(?=.*?[A-Z])(?=.*?[a-z])(?=.*?[0-9])(?=.*?[#?!@$%^&*-]).{6,}$/;
-  ///^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[@$!%*?&])[A-Za-z\d@$!%*?&]{6,8}$/;
-  // /^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[@$!%*?&])[A-Za-z\d@$!%*?&]{8,}$/;
-  // '^(?=.*?[A-Z])(?=.*?[a-z])(?=,*?[0-9]).{6,8}$';
-  //'.*?[a-zA-Z].*?';
-  //'/\-?\d*\.?\d{1,2}/';
  
+  passwordRegEx = /^(?=.*?[A-Z])(?=.*?[a-z])(?=.*?[0-9])(?=.*?[#?!@$%^&*-]).{6,}$/;
+  
 
-  constructor(private httpClientService: HttpclientService) { }
+  constructor(private httpClientService: HttpclientService,private formBuilder:FormBuilder,private dialog:MatDialog) { 
+   
+  }
 
   ngOnInit(): void {
-    this.exform = new FormGroup({
+    this.creditApplicationForm = this.formBuilder.group ({
       'accountNumber' : new FormControl(null, [Validators.required,
         Validators.pattern(this.numberRegEx)]),
       'balance': new FormControl(null, [Validators.required,
@@ -80,10 +78,14 @@ export class RegisterComponent implements OnInit {
         [Validators.required,
           Validators.pattern(this.passwordRegEx)
       ]),
+      'confirmpassword': new FormControl(null,[Validators.required]),
       'birthDate':new FormControl(null, Validators.required),
       'socialSecurity':new FormControl(null, [Validators.required,
         Validators.pattern(this.numberRegEx)]),
       'address': new FormControl(null, Validators.required),
+      'city': new FormControl(null, Validators.required),
+      'state': new FormControl(null, Validators.required),
+      'zipcode': new FormControl(null, [Validators.required,Validators.pattern(this.numberRegEx)]),
       'companyName':new FormControl(null, [Validators.required,
         Validators.pattern(this.stringRegEx)]),
       'salary':new FormControl(null, [Validators.required,
@@ -98,7 +100,7 @@ export class RegisterComponent implements OnInit {
         null,
         [
           Validators.required,
-          // Validators.pattern('^((\\+1*-?)|0)?[0-9]{10}$')
+          
           Validators.pattern('^\\s*(?:\\+?(\\d{1,3}))?[-. (]*(\\d{3})[-. )]*(\\d{3})[-. ]*(\\d{4})(?: *x(\\d+))?\\s*$')
         ]),
         'referenceTwoName':new FormControl(null, [Validators.required,
@@ -107,110 +109,67 @@ export class RegisterComponent implements OnInit {
           null,
           [
             Validators.required,
-            // Validators.pattern('^((\\+1*-?)|0)?[0-9]{10}$')
+          
             Validators.pattern('^\\s*(?:\\+?(\\d{1,3}))?[-. (]*(\\d{3})[-. )]*(\\d{3})[-. ]*(\\d{4})(?: *x(\\d+))?\\s*$')
           ]),
 
           isAccept:new FormControl(false, Validators.requiredTrue),
-          //acceptTerms: [false, Validators.requiredTrue]
+         
       
-    });
+    },
+    {
+      validators:this.PasswordMatch('password','confirmpassword')
+    }
+    );
 
     
   }
 
+  PasswordMatch(controlName:string,matchingControlName:string){
+
+    return(formGroup:FormGroup) =>{
+      const control = formGroup.controls[controlName];
+      const Matchingcontrol = formGroup.controls[matchingControlName];
+      if(Matchingcontrol.errors && !Matchingcontrol.errors.passwordMatch){
+        return
+      }
+      if(control.value !== Matchingcontrol.value){
+        Matchingcontrol.setErrors({passwordMatch:true})
+      }
+      else{
+        Matchingcontrol.setErrors(null);
+      }
+    }
+  }
+
+  get confirmpassword(){
+    return this.creditApplicationForm.get('confirmpassword');
+  }
   
-  get accountNumber() {
-    return this.exform.get('accountNumber');
+
+  get creditCardReactiveForm(){
+    return this.creditApplicationForm.controls;
   }
 
-  get name(){
-    return this.exform.get('firstName');
+  openCompDialog() {
+    const myCompDialog = this.dialog.open(TermsAndConditionsComponent);
+    myCompDialog.afterClosed().subscribe((res) => {
+      // Data back from dialog
+      console.log({ res });
+    });
   }
 
-  get balance(){
-    return this.exform.get('balance');
+  openDialog(){
+
+   const termsAndCondtionsdailog=  this.dialog.open(TermsAndConditionsComponent);
+    
+   width: '250px';
+   height: '300px';
+    termsAndCondtionsdailog.afterClosed().subscribe(result => {
+      console.log(`Dialog result: ${result}`);
+    });
   }
 
-   
-    get remianingCredit(){
-      return this.exform.get('remianingCredit');
-    }
-
-    get firstName(){
-      return this.exform.get('firstName');
-    }
-
-    get middleName(){
-      return this.exform.get('middleName');
-    } 
-
-    get lastName(){
-      return this.exform.get('lastName');
-    } 
-
-    get email(){
-      return this.exform.get('email');
-    }
-
-    get phone(){
-      return this.exform.get('phone');
-    }
-    get userName(){
-      return this.exform.get('userName');
-    }
-
-    get password(){
-      return this.exform.get('password');
-    }
-
-    get birthDate(){
-      return this.exform.get('birthDate');
-    }
-  
-    get socialSecurity(){
-      return this.exform.get('socialSecurity');
-    }
-
-    get address(){
-      return this.exform.get('address');
-    }
-
-    get companyName(){
-      return this.exform.get('companyName');
-    }
-
-    get salary(){
-      return this.exform.get('salary');
-    }
-
-    get emptField(){
-      return this.exform.get('emptField');
-    }
-
-    get lengthOfEmployment(){
-      return this.exform.get('lengthOfEmployment');
-    }
-
-    get referenceOneName(){
-      return this.exform.get('referenceOneName');
-    }
-
-    get referenceOnePhoneNumb(){
-      return this.exform.get('referenceOnePhoneNumb');
-    }
-
-    get referenceTwoName(){
-      return this.exform.get('referenceTwoName');
-    }
-
-    get referenceTwoPhoneNumb(){
-      return this.exform.get('referenceTwoPhoneNumb');
-    }
-
-    get isAccept(){
-      return this.exform.get('isAccept');
-    }
   
   toEmpSection(){
 

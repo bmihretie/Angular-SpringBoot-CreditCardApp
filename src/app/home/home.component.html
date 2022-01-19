@@ -1,42 +1,12 @@
 
 
 <div > 
-   <!-- here is the nav bar -->
-    <!-- <nav class="navbar navbar-expand-lg navar navbar-dark bg-dark">
-    <a class="navbar-brand" href="#"> Credit Card App</a>
-    <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
-      <span class="navbar-toggler-icon"></span>
-    </button>
-  
-    <div class="collapse navbar-collapse" id="navbarSupportedContent">
-      <ul class="navbar-nav mr-auto">
-        <li class="nav-item active">
-          <a class="nav-link" href="#">Home <span class="sr-only">(current)</span></a>
-        </li>
-        <li class="nav-item">
-          <a class="nav-link" href="#">Apply for Credit</a>
-        </li>
-  
-        <li class="nav-item">
-          <a class="nav-link" href="#">Sign-in</a>
-        </li>
-  
-        <li class="nav-item">
-          <a class="nav-link" href="#">Help</a>
-        </li>
-  
-      </ul>
-    </div>
-   </nav> -->
   
    <!-- here is page title -->
-   <div class="card p-4 mt-0">
-    <div class='card-header' class="text-center font-weight-bold">
-        <h1>{{pageTitle}}</h1>
-     </div>
-    </div>
+   <h1 class="text-center" style="background-color: #508bfc !important;color: #fff;font-size: 30px;padding:30px">{{pageTitle}} </h1>
   
     <!-- here is image and the home page buttons -->
+    
    <div class="card flex">
     <img class="card-img-top" src="./assets/images/creditcard.jpg" alt="Credit card image" 
     style="max-height:500px;" class="img-responsive mb-3 pb-3" >
@@ -52,7 +22,7 @@
         <li class="pb-2 mb-10" *ngIf="!isLoggedIn">
             <!-- <a routerLink="/register" > Apply For Credit </a> -->
             <button type="button" class="btn btn-primary btn-lg btn-block col-4" routerLink="/register" >
-                Apply For Credit</button>
+                Apply For Credit (Create Account)</button>
         </li>
         <li class="pb-2 mb-10" *ngIf="!isLoggedIn">
             <button type="button" class="btn btn-success btn-lg btn-block col-4" routerLink="/login" >
@@ -62,10 +32,10 @@
           <button type="button" class="btn btn-secondary btn-lg btn-block col-4" routerLink="/help" >
               Contact Us</button>
        </li>
-        <li class="pb-2 mb-10 pb-50">
+        <!-- <li class="pb-2 mb-10 pb-50">
             <button type="button" class="btn btn-secondary btn-lg btn-block col-4" routerLink="/aboutus" >
                 Help</button>
-        </li>
+        </li> -->
     </ul>
 
     
