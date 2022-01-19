@@ -19,8 +19,11 @@ export class RegisterComponent implements OnInit {
   empSection = false;
   isSecondary=false;
   creditApplicationForm!: FormGroup;
+  minAge=18;
 
-  user:Customer = new Customer("",0, 0,"","","","","","","","","","","","","","","");
+  // user:Customer = new Customer("",0, 0,"","","","","","","","","","","","","","","");
+  user:Customer = new Customer(0,"","","","","",0,"",0,"",0,"","");
+ 
  
   
   userInfo!:{
@@ -52,21 +55,21 @@ export class RegisterComponent implements OnInit {
 
   ngOnInit(): void {
     this.creditApplicationForm = this.formBuilder.group ({
-      'accountNumber' : new FormControl(null, [Validators.required,
-        Validators.pattern(this.numberRegEx)]),
-      'balance': new FormControl(null, [Validators.required,
-        Validators.pattern(this.numberRegEx)]),
-      'remianingCredit' : new FormControl(null, [Validators.required,
-        Validators.pattern(this.numberRegEx)]),
+      // 'accountNumber' : new FormControl(null, [Validators.required,
+      //   Validators.pattern(this.numberRegEx)]),
+      // 'balance': new FormControl(null, [Validators.required,
+      //   Validators.pattern(this.numberRegEx)]),
+      // 'remianingCredit' : new FormControl(null, [Validators.required,
+      //   Validators.pattern(this.numberRegEx)]),
       'firstName': new FormControl(null, [Validators.required,
         Validators.pattern(this.stringRegEx)]),
       'middleName':  new FormControl(null,[ Validators.required,
         Validators.pattern(this.stringRegEx)]),
       'lastName':new FormControl(null, [Validators.required,
         Validators.pattern(this.stringRegEx)]),
-      'email' : new FormControl(null, [Validators.required, Validators.email,
-          Validators.pattern('^[-a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,4}$')]),
-      'phone': new FormControl(
+      // 'email' : new FormControl(null, [Validators.required, Validators.email,
+      //     Validators.pattern('^[-a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,4}$')]),
+      'phoneNumber': new FormControl(
         null,
         [
           Validators.required,
@@ -74,51 +77,51 @@ export class RegisterComponent implements OnInit {
           Validators.pattern('^\\s*(?:\\+?(\\d{1,3}))?[-. (]*(\\d{3})[-. )]*(\\d{3})[-. ]*(\\d{4})(?: *x(\\d+))?\\s*$')
         ]),
       'userName': new FormControl(null, Validators.required),
-      'password': new FormControl(null, 
+      'pass': new FormControl(null, 
         [Validators.required,
           Validators.pattern(this.passwordRegEx)
       ]),
       'confirmpassword': new FormControl(null,[Validators.required]),
-      'birthDate':new FormControl(null, Validators.required),
-      'socialSecurity':new FormControl(null, [Validators.required,
+      'birthdate':new FormControl(null, Validators.required),
+      'ssn':new FormControl(null, [Validators.required,
         Validators.pattern(this.numberRegEx)]),
       'address': new FormControl(null, Validators.required),
-      'city': new FormControl(null, Validators.required),
-      'state': new FormControl(null, Validators.required),
-      'zipcode': new FormControl(null, [Validators.required,Validators.pattern(this.numberRegEx)]),
-      'companyName':new FormControl(null, [Validators.required,
+      // 'city': new FormControl(null, Validators.required),
+      // 'state': new FormControl(null, Validators.required),
+      // 'zipcode': new FormControl(null, [Validators.required,Validators.pattern(this.numberRegEx)]),
+      'employer':new FormControl(null, [Validators.required,
         Validators.pattern(this.stringRegEx)]),
-      'salary':new FormControl(null, [Validators.required,
+      'annualSalary':new FormControl(null, [Validators.required,
         Validators.pattern(this.numberRegEx)]),
-      'emptField':new FormControl(null, [Validators.required,
+      'fieldOfEmp':new FormControl(null, [Validators.required,
         Validators.pattern(this.stringRegEx)]),
-      'lengthOfEmployment':new FormControl(null, [Validators.required,
+      'lengthOfEmp':new FormControl(null, [Validators.required,
         Validators.pattern(this.numberRegEx)]),
-      'referenceOneName':new FormControl(null, [Validators.required,
-        Validators.pattern(this.stringRegEx)]),
-      'referenceOnePhoneNumb':new FormControl(
-        null,
-        [
-          Validators.required,
+      // 'referenceOneName':new FormControl(null, [Validators.required,
+      //   Validators.pattern(this.stringRegEx)]),
+      // 'referenceOnePhoneNumb':new FormControl(
+      //   null,
+      //   [
+      //     Validators.required,
           
-          Validators.pattern('^\\s*(?:\\+?(\\d{1,3}))?[-. (]*(\\d{3})[-. )]*(\\d{3})[-. ]*(\\d{4})(?: *x(\\d+))?\\s*$')
-        ]),
-        'referenceTwoName':new FormControl(null, [Validators.required,
-          Validators.pattern(this.stringRegEx)]),
-        'referenceTwoPhoneNumb':new FormControl(
-          null,
-          [
-            Validators.required,
+      //     Validators.pattern('^\\s*(?:\\+?(\\d{1,3}))?[-. (]*(\\d{3})[-. )]*(\\d{3})[-. ]*(\\d{4})(?: *x(\\d+))?\\s*$')
+      //   ]),
+      //   'referenceTwoName':new FormControl(null, [Validators.required,
+      //     Validators.pattern(this.stringRegEx)]),
+      //   'referenceTwoPhoneNumb':new FormControl(
+      //     null,
+      //     [
+      //       Validators.required,
           
-            Validators.pattern('^\\s*(?:\\+?(\\d{1,3}))?[-. (]*(\\d{3})[-. )]*(\\d{3})[-. ]*(\\d{4})(?: *x(\\d+))?\\s*$')
-          ]),
+      //       Validators.pattern('^\\s*(?:\\+?(\\d{1,3}))?[-. (]*(\\d{3})[-. )]*(\\d{3})[-. ]*(\\d{4})(?: *x(\\d+))?\\s*$')
+      //     ]),
 
           isAccept:new FormControl(false, Validators.requiredTrue),
          
       
     },
     {
-      validators:this.PasswordMatch('password','confirmpassword')
+      validators:this.PasswordMatch('pass','confirmpassword')
     }
     );
 
@@ -184,13 +187,62 @@ export class RegisterComponent implements OnInit {
     this.empSection = false;
   }
 
+  // createCustomerCredit(): void {
+  //   this.httpClientService.createCustomerCredit(this.user)
+  //       .subscribe( data => {
+  //         alert("Credit Application created successfully.");
+  //       });
+
+  // };
+
   createCustomerCredit(): void {
-    this.httpClientService.createCustomerCredit(this.user)
+    this.httpClientService.createCustomerCredit(this.creditApplicationForm.value)
         .subscribe( data => {
           alert("Credit Application created successfully.");
-        });
+        },
+        
+      
+          error =>{
+            console.log(error);
+            alert("username is taken Credit Application was not successful.");
+          } 
+        
+          );
 
   };
+
+
+
+  saveData(){
+    console.log(this.creditApplicationForm.value)
+  }
+
+  
+//  Ctrl($scope: { birthDate: any; minAge: Date; }, $filter: any) {
+//     var today = new Date();
+//     var minAge = 18;
+//     $scope.birthDate = ($filter)('date')(new Date(today.getFullYear() - minAge, today.getMonth(), today.getDate()), 'yyyy-MM-dd');
+//     $scope.minAge = new Date(today.getFullYear() - minAge, today.getMonth(), today.getDate());
+//   }
+
+//  Ctrl($scope:any, $filter:any) {
+//     var today = new Date();
+//     var minAge = 18;
+//     $scope.birthDate = ($filter)('date')(new Date(today.getDate(),today.getMonth(),today.getFullYear() - minAge,  ), 'dd-MM-yyy');
+//     $scope.minAge = new Date(today.getDate() , today.getMonth(),today.getFullYear() - minAge );
+//   }
+
+  Ctrl($scope:any, $filter: any) {
+    var today = new Date();
+    console.log(today);
+    var minAge=18;
+   // $scope.birthDate = ($filter)('date')(new Date(today.getFullYear() - minAge, today.getMonth(), today.getDate()), 'yyyy-MM-dd');
+    $scope.minAge = new Date(today.getFullYear() - minAge, today.getMonth(), today.getDate());
+    console.log($scope.minAge);
+  }
+  
+  
+  
 
 
 
