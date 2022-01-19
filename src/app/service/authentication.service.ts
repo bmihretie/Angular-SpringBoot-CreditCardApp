@@ -30,7 +30,7 @@ export class AuthenticationService {
     // console.log(username);
     // console.log(password);
     const headers = new HttpHeaders({ Authorization: 'Basic ' + btoa(username + ':' + password) });
-    return this.httpClient.get<User>('https://creditgroup1-spring-docker.azurewebsites.net/customer/validateLogin',{headers}).pipe(
+    return this.httpClient.get<User>(`https://creditcreate1-be-docker.azurewebsites.net/account/login?username=${username}&password=${password}`,{headers}).pipe(
      map(
        userData => {
         sessionStorage.setItem('username',username);
@@ -45,8 +45,12 @@ export class AuthenticationService {
 
   isUserLoggedIn() {
     let user = sessionStorage.getItem('username')
-    console.log(!(user === null))
+    // console.log(!(user === null))
     return !(user === null)
+  }
+
+  getUsername(){
+    return sessionStorage.getItem('username')
   }
 
   logOut() {

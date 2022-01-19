@@ -6,6 +6,8 @@ import {MatTableDataSource} from '@angular/material/table';
 
 import { Customer, HttpclientService } from '../service/httpclient.service';
 
+import { AuthenticationService } from '../service/authentication.service';
+
 @Component({
   selector: 'app-displayaccount',
   templateUrl: './displayaccount.component.html',
@@ -22,7 +24,9 @@ export class DisplayaccountComponent implements OnInit, AfterViewInit{
 
   // customers !:Customer[];
   account: any;
-
+  username: any;
+  id: any;
+  transactions: any;
   displayedColumns: string[] = ['id', 'amount', 'date'];
   
   dataSource = new MatTableDataSource<TransactionHistory>(ELEMENT_DATA);
@@ -32,21 +36,24 @@ export class DisplayaccountComponent implements OnInit, AfterViewInit{
 
   ngAfterViewInit() {
     this.dataSource.paginator = this.paginator;
+    this.httpClientService.getTransactionHistory(this.id).subscribe(
+      response =>{
+        this.transactions = response
+      },
+    )
   }
 
-  
-
-
-  constructor(private httpClientService:HttpclientService) { }
+  constructor(private httpClientService:HttpclientService, private authService: AuthenticationService) { }
 
   ngOnInit(){
     // for paginator data attachement
     this.dataSource.paginator = this.paginator;
-
-    this.httpClientService.getCustomerAccount().subscribe(
+    this.username = this.authService.getUsername()
+    this.httpClientService.getCustomerAccount(this.username).subscribe(
       response =>{
         console.log(response)
         this.account = response
+        this.id = response.id
       },
     )
   }

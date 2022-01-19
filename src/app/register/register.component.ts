@@ -22,7 +22,7 @@ export class RegisterComponent implements OnInit {
   minAge=18;
 
   // user:Customer = new Customer("",0, 0,"","","","","","","","","","","","","","","");
-  user:Customer = new Customer(0,"","","","","",0,"",0,"",0,"","");
+  user:Customer = new Customer("",0,"","","","","",0,"",0,"",0,"","");
  
  
   

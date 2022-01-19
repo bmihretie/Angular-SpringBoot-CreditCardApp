@@ -2,6 +2,7 @@
 
 import { Injectable } from '@angular/core';
 import {HttpClient, HttpHeaders } from '@angular/common/http'
+import { AuthenticationService } from '../service/authentication.service';
 
 // export class Customer {
 //   constructor(
@@ -28,6 +29,7 @@ import {HttpClient, HttpHeaders } from '@angular/common/http'
 
 export class Customer{
   constructor(
+    public id:any,
     public ssn:number,
     public firstName:String ,
     public middleName: String,
@@ -52,9 +54,9 @@ export class HttpclientService {
 
   username!: string;
   password!:string;
-  constructor(private httpClient:HttpClient) { }
+  constructor(private httpClient:HttpClient, private authService: AuthenticationService) { }
 
-  public  getCustomers()
+  public getCustomers()
   {
     let username='username'
     let password='password'
@@ -70,8 +72,8 @@ export class HttpclientService {
   //   let password='password'
   
   //   const headers = new HttpHeaders({ Authorization: 'Basic ' + btoa(username + ':' + password) });
-  //   //return this.httpClient.post<Customer>("https://creditgroup1-spring-docker.azurewebsites.net/customer", customer,{headers});
-  //   return this.httpClient.post<Customer>("https://creditgroup1-spring-docker.azurewebsites.net/customer/save",customer,{headers});
+  //   //return this.httpClient.post<Customer>("https://creditcreate1-be-docker.azurewebsites.net", customer,{headers});
+  //   return this.httpClient.post<Customer>("https://creditcreate1-be-docker.azurewebsites.net/customer/save",customer,{headers});
   //   //return this.httpClient.post<Customer>("http://localhost:8080/customers", customer);
   // }
 
@@ -79,18 +81,22 @@ export class HttpclientService {
    
   
    // const headers = new HttpHeaders({ Authorization: 'Basic ' + btoa(username + ':' + password) });
-    //return this.httpClient.post<Customer>("https://creditgroup1-spring-docker.azurewebsites.net/customer", customer,{headers});
-    return this.httpClient.post("https://creditgroup1-spring-docker.azurewebsites.net/customer/save",data);
+    //return this.httpClient.post<Customer>("https://creditcreate1-be-docker.azurewebsites.net/customer", customer,{headers});
+    return this.httpClient.post("https://creditcreate1-be-docker.azurewebsites.net/customer/save",data);
     //return this.httpClient.post<Customer>("http://localhost:8080/customers", customer);
   }
 
-  public getCustomerAccount() {
-    return this.httpClient.get<Customer>('https://creditgroup1-spring-docker.azurewebsites.net/account/get?id=123456');
+  public getCustomerAccount(username: any) {
+    return this.httpClient.get<Customer>(`https://creditcreate1-be-docker.azurewebsites.net/account/getByUsername?username=${username}`);
   }
   
-  public getCustomerStatementsAndCreditScore() {
-    return this.httpClient.get('https://creditgroup1-spring-docker.azurewebsites.net/statement/getByAccount?id=123456');
+  public getCustomerStatementsAndCreditScore(id: any) {
+    return this.httpClient.get(`https://creditcreate1-be-docker.azurewebsites.net/monthlyStatement/getByAccount?id=${id}`);
   }
+
+  public getTransactionHistory(accountId: any) {
+    return this.httpClient.get(`https://creditcreate1-be-docker.azurewebsites.net/activity/getByAccount?id=${accountId}`)
+   }
 
   public getUserName(username:string){
     return this.httpClient.get<string>('http://localhost:8080/username');
