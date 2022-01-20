@@ -19,7 +19,8 @@ export class RegisterComponent implements OnInit {
   empSection = false;
   isSecondary=false;
   creditApplicationForm!: FormGroup;
-  minAge=18;
+  readonly minAge = 18;
+  maxDob!: Date;
 
   // user:Customer = new Customer("",0, 0,"","","","","","","","","","","","","","","");
   user:Customer = new Customer("",0,"","","","","",0,"",0,"",0,"","");
@@ -54,6 +55,14 @@ export class RegisterComponent implements OnInit {
   }
 
   ngOnInit(): void {
+
+    // restricting credit applicants to be 18 yeras and above
+    const today = new Date();
+    this.maxDob = new Date(
+      today.getFullYear() - this.minAge,
+      today.getMonth(),
+      today.getDate() 
+      );
     this.creditApplicationForm = this.formBuilder.group ({
       // 'accountNumber' : new FormControl(null, [Validators.required,
       //   Validators.pattern(this.numberRegEx)]),
@@ -198,13 +207,14 @@ export class RegisterComponent implements OnInit {
   createCustomerCredit(): void {
     this.httpClientService.createCustomerCredit(this.creditApplicationForm.value)
         .subscribe( data => {
+          this.creditApplicationForm.reset(this.creditApplicationForm.value);
           alert("Credit Application created successfully.");
         },
         
       
           error =>{
             console.log(error);
-            alert("username is taken Credit Application was not successful.");
+            alert("username is taken Credit Application was not successful.please use another username");
           } 
         
           );

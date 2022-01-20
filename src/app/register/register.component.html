@@ -68,10 +68,10 @@
             <div class="form-group">
 
                 <label for="birthdate">Date of Birth</label>
-                <input required type='date' ng-model="birthdate" max="{{minAge | date:'yyyy-MM-dd'}}" id="birthdate" formControlName="birthdate"  placeholder="Date of Birth" class="form-control" />
+                <input required type='date' max="{{maxDob | date:'yyyy-MM-dd'}}" id="birthdate" formControlName="birthdate"  placeholder="Date of Birth" class="form-control" />
                 <!-- <input type="date" ng-model="dob" max="{{minAge | date:'yyyy-MM-dd'}}"/> -->
                 <div *ngIf="creditCardReactiveForm.birthdate?.invalid && creditCardReactiveForm.birthdate?.touched" class="text-danger">
-                    <p *ngIf="creditCardReactiveForm.birthdate?.errors?.['required']">Birth Date required</p>
+                    <p *ngIf="creditCardReactiveForm.birthdate?.errors?.['required']">Birth Date required, minimum 18 years old</p>
                     
                 </div> 
 

@@ -19,6 +19,7 @@ export class LoginComponent implements OnInit {
   invalidLogin = false;
 
   ngOnInit(): void {
+    
   }
 
   verify(){
@@ -39,7 +40,8 @@ export class LoginComponent implements OnInit {
       this.invalidLogin = false
     },
     error => {
-      this.invalidLogin = true
+      this.invalidLogin = true;
+     alert("username or password doesn't match, please try again");
 
     }
   )
