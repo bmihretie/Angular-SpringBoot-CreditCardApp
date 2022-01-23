@@ -9,7 +9,7 @@ import { HomeComponent } from './home/home.component';
 import { LoginComponent } from './login/login.component';
 import { RegisterComponent } from './register/register.component';
 import { DisplayaccountComponent } from './displayaccount/displayaccount.component';
-import { HelpComponent } from './help/help.component';
+import { HelpComponent } from './contact/help.component';
 import { NavbarComponent } from './navbar/navbar.component';
 import { FooterComponent } from './footer/footer.component';
 import { HttpClientModule, HTTP_INTERCEPTORS } from '@angular/common/http';
@@ -18,8 +18,12 @@ import { BasicauthhttpinterceptorService } from './service/basicauthhttpintercep
 import {MatDialogModule} from '@angular/material/dialog';
 import { MatCheckboxModule } from '@angular/material/checkbox';
 
+import { MatIconModule } from '@angular/material/icon';
+import { MatButtonModule } from '@angular/material/button';
+import { MatToolbarModule } from '@angular/material/toolbar';
 
-import { AboutusComponent } from './aboutus/aboutus.component';
+
+import { AboutusComponent } from './help/aboutus.component';
 import { TransactionStatementComponent } from './transaction-statement/transaction-statement.component';
 import { CreditScoreComponent } from './credit-score/credit-score.component';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
@@ -28,6 +32,7 @@ import { MatPaginatorModule } from '@angular/material/paginator';
 import { MatSortModule } from '@angular/material/sort';
 import { MatNativeDateModule } from '@angular/material/core';
 import { TermsAndConditionsComponent } from './terms-and-conditions/terms-and-conditions.component';
+import { ConfirmationDailogComponent } from './confirmation-dailog/confirmation-dailog.component';
 
 
 
@@ -55,7 +60,8 @@ import { TermsAndConditionsComponent } from './terms-and-conditions/terms-and-co
     AboutusComponent,
     TransactionStatementComponent,
     CreditScoreComponent,
-    TermsAndConditionsComponent
+    TermsAndConditionsComponent,
+    ConfirmationDailogComponent
   ],
   imports: [
     BrowserModule,
@@ -70,6 +76,9 @@ import { TermsAndConditionsComponent } from './terms-and-conditions/terms-and-co
     MatNativeDateModule,
     MatDialogModule,
     MatCheckboxModule,
+    MatIconModule,
+    MatButtonModule,
+    MatToolbarModule,
    
    
     //FontAwesomeModule

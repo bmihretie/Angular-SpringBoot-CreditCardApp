@@ -4,6 +4,7 @@ import { FormControl, FormGroup, Validators,FormBuilder} from '@angular/forms';
 import { Customer, HttpclientService } from '../service/httpclient.service';
 import { MatDialog,MatDialogConfig, MatDialogRef} from '@angular/material/dialog'; 
 import { TermsAndConditionsComponent } from '../terms-and-conditions/terms-and-conditions.component';
+import { LogoutComponent } from '../logout/logout.component';
 
 
 @Component({
@@ -13,8 +14,6 @@ import { TermsAndConditionsComponent } from '../terms-and-conditions/terms-and-c
 })
 export class RegisterComponent implements OnInit {
 
-  // validateForm!:FormGroup
-
   pinfoSection = true;
   empSection = false;
   isSecondary=false;
@@ -22,31 +21,16 @@ export class RegisterComponent implements OnInit {
   readonly minAge = 18;
   maxDob!: Date;
 
-  // user:Customer = new Customer("",0, 0,"","","","","","","","","","","","","","","");
+  
   user:Customer = new Customer("",0,"","","","","",0,"",0,"",0,"","");
  
- 
-  
-  userInfo!:{
-    fname:string,
-    mname:string | null,
-    lname:string,
-    dob:string,
-    ssn:number,
-    address:string,
-    cname:string,
-    phoneno:string,
-    salary:number,
-    feild:string,
-    emplen:number
-  }
-
-  contacts!: {c1Name:string,c1Phone:string,c2Name:string,c2Phone:string};
-  secondary!: string | null;
-
+  account:any;
+  // regular expression for number vlaidation
   numberRegEx =  /^-?\d+\.?\d*$/;
+  // regular expressin for string validation
   stringRegEx =  /^[^0-9]+$/;
- 
+  // regular expressionfor password pattern validation with minimum 
+  // character of 6,at least one Capital,small, number,special characters
   passwordRegEx = /^(?=.*?[A-Z])(?=.*?[a-z])(?=.*?[0-9])(?=.*?[#?!@$%^&*-]).{6,}$/;
   
 
@@ -56,20 +40,18 @@ export class RegisterComponent implements OnInit {
 
   ngOnInit(): void {
 
-    // restricting credit applicants to be 18 yeras and above
+    // the code that restrics credit applicants to be 18 years and above
+    // in the date of birth input
     const today = new Date();
     this.maxDob = new Date(
       today.getFullYear() - this.minAge,
       today.getMonth(),
       today.getDate() 
       );
+
+    // validating the credit application input
     this.creditApplicationForm = this.formBuilder.group ({
-      // 'accountNumber' : new FormControl(null, [Validators.required,
-      //   Validators.pattern(this.numberRegEx)]),
-      // 'balance': new FormControl(null, [Validators.required,
-      //   Validators.pattern(this.numberRegEx)]),
-      // 'remianingCredit' : new FormControl(null, [Validators.required,
-      //   Validators.pattern(this.numberRegEx)]),
+      
       'firstName': new FormControl(null, [Validators.required,
         Validators.pattern(this.stringRegEx)]),
       'middleName':  new FormControl(null,[ Validators.required,
@@ -82,10 +64,10 @@ export class RegisterComponent implements OnInit {
         null,
         [
           Validators.required,
-          // Validators.pattern('^((\\+1*-?)|0)?[0-9]{10}$')
+          
           Validators.pattern('^\\s*(?:\\+?(\\d{1,3}))?[-. (]*(\\d{3})[-. )]*(\\d{3})[-. ]*(\\d{4})(?: *x(\\d+))?\\s*$')
         ]),
-      'userName': new FormControl(null, Validators.required),
+      'username': new FormControl(null, Validators.required),
       'pass': new FormControl(null, 
         [Validators.required,
           Validators.pattern(this.passwordRegEx)
@@ -106,25 +88,7 @@ export class RegisterComponent implements OnInit {
         Validators.pattern(this.stringRegEx)]),
       'lengthOfEmp':new FormControl(null, [Validators.required,
         Validators.pattern(this.numberRegEx)]),
-      // 'referenceOneName':new FormControl(null, [Validators.required,
-      //   Validators.pattern(this.stringRegEx)]),
-      // 'referenceOnePhoneNumb':new FormControl(
-      //   null,
-      //   [
-      //     Validators.required,
-          
-      //     Validators.pattern('^\\s*(?:\\+?(\\d{1,3}))?[-. (]*(\\d{3})[-. )]*(\\d{3})[-. ]*(\\d{4})(?: *x(\\d+))?\\s*$')
-      //   ]),
-      //   'referenceTwoName':new FormControl(null, [Validators.required,
-      //     Validators.pattern(this.stringRegEx)]),
-      //   'referenceTwoPhoneNumb':new FormControl(
-      //     null,
-      //     [
-      //       Validators.required,
-          
-      //       Validators.pattern('^\\s*(?:\\+?(\\d{1,3}))?[-. (]*(\\d{3})[-. )]*(\\d{3})[-. ]*(\\d{4})(?: *x(\\d+))?\\s*$')
-      //     ]),
-
+    
           isAccept:new FormControl(false, Validators.requiredTrue),
          
       
@@ -137,6 +101,7 @@ export class RegisterComponent implements OnInit {
     
   }
 
+  // passord match validators 
   PasswordMatch(controlName:string,matchingControlName:string){
 
     return(formGroup:FormGroup) =>{
@@ -153,24 +118,9 @@ export class RegisterComponent implements OnInit {
       }
     }
   }
-
-  get confirmpassword(){
-    return this.creditApplicationForm.get('confirmpassword');
-  }
   
-
-  get creditCardReactiveForm(){
-    return this.creditApplicationForm.controls;
-  }
-
-  openCompDialog() {
-    const myCompDialog = this.dialog.open(TermsAndConditionsComponent);
-    myCompDialog.afterClosed().subscribe((res) => {
-      // Data back from dialog
-      console.log({ res });
-    });
-  }
-
+  // the function that controlls the terms and condtions Angular
+  // mat dialog
   openDialog(){
 
    const termsAndCondtionsdailog=  this.dialog.open(TermsAndConditionsComponent);
@@ -182,7 +132,8 @@ export class RegisterComponent implements OnInit {
     });
   }
 
-  
+  // funcion that handles navagation from personal infomation input
+  // to compnay information
   toEmpSection(){
 
     this.pinfoSection = false;
@@ -190,28 +141,44 @@ export class RegisterComponent implements OnInit {
 
   }
 
+  // funcion that handles navagation from  company information  input
+  // to personal infomation
   onBack(){
 
     this.pinfoSection = true;
     this.empSection = false;
   }
 
-  // createCustomerCredit(): void {
-  //   this.httpClientService.createCustomerCredit(this.user)
-  //       .subscribe( data => {
-  //         alert("Credit Application created successfully.");
-  //       });
+  // get control of each user input
+  get creditCardReactiveForm(){
+    return this.creditApplicationForm.controls;
+  }
 
-  // };
-
+ // function that helps to post the user input to the database using
+ // http client service and reactive angular form
   createCustomerCredit(): void {
-    this.httpClientService.createCustomerCredit(this.creditApplicationForm.value)
+  
+    this.account= this.creditApplicationForm.value;
+    this.httpClientService.createCustomerCredit(this.account)
         .subscribe( data => {
-          this.creditApplicationForm.reset(this.creditApplicationForm.value);
+         
+          this.creditApplicationForm.get('ssn')?.setValue(this.account.ssn);
+          this.creditApplicationForm.get('firstName')?.setValue(this.account.firstName);
+          this.creditApplicationForm.get('middleName')?.setValue(this.account.middleName);
+          this.creditApplicationForm.get('lastName')?.setValue(this.account.lastName);
+          this.creditApplicationForm.get('birthdate')?.setValue(this.account.birthdate);
+          this.creditApplicationForm.get('address')?.setValue(this.account.address);
+          this.creditApplicationForm.get('phoneNumber')?.setValue(this.account.phoneNumber);
+          this.creditApplicationForm.get('employer')?.setValue(this.account.employer);
+          this.creditApplicationForm.get('lengthOfEmp')?.setValue(this.account.lengthOfEmp);
+          this.creditApplicationForm.get('fieldOfEmp')?.setValue(this.account.fieldOfEmp);
+          this.creditApplicationForm.get('annualSalary')?.setValue(this.account.annualSalary);
+          this.creditApplicationForm.get('username')?.setValue(this.account.username);
+          this.creditApplicationForm.get('pass')?.setValue(this.account.pass);
+          //this.creditApplicationForm.reset(this.creditApplicationForm.value);
           alert("Credit Application created successfully.");
         },
-        
-      
+          // error message 
           error =>{
             console.log(error);
             alert("username is taken Credit Application was not successful.please use another username");
@@ -221,38 +188,6 @@ export class RegisterComponent implements OnInit {
 
   };
 
-
-
-  saveData(){
-    console.log(this.creditApplicationForm.value)
-  }
-
-  
-//  Ctrl($scope: { birthDate: any; minAge: Date; }, $filter: any) {
-//     var today = new Date();
-//     var minAge = 18;
-//     $scope.birthDate = ($filter)('date')(new Date(today.getFullYear() - minAge, today.getMonth(), today.getDate()), 'yyyy-MM-dd');
-//     $scope.minAge = new Date(today.getFullYear() - minAge, today.getMonth(), today.getDate());
-//   }
-
-//  Ctrl($scope:any, $filter:any) {
-//     var today = new Date();
-//     var minAge = 18;
-//     $scope.birthDate = ($filter)('date')(new Date(today.getDate(),today.getMonth(),today.getFullYear() - minAge,  ), 'dd-MM-yyy');
-//     $scope.minAge = new Date(today.getDate() , today.getMonth(),today.getFullYear() - minAge );
-//   }
-
-  Ctrl($scope:any, $filter: any) {
-    var today = new Date();
-    console.log(today);
-    var minAge=18;
-   // $scope.birthDate = ($filter)('date')(new Date(today.getFullYear() - minAge, today.getMonth(), today.getDate()), 'yyyy-MM-dd');
-    $scope.minAge = new Date(today.getFullYear() - minAge, today.getMonth(), today.getDate());
-    console.log($scope.minAge);
-  }
-  
-  
-  
 
 
 

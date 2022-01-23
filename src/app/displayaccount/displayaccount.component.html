@@ -2,7 +2,7 @@
 <h1 class="text-center" style="background-color: #508bfc !important;color: #fff;font-size: 30px;padding:30px">Account Information</h1>
 
 <div class="row" id="wrapper">
-    <div class="col-md-6">
+    <div class="col-md-6 ml-2">
         <table class="table table-striped" [(ngModel)]=account>
             <tr>
               <th>Name:</th>
@@ -18,7 +18,7 @@
             </tr>  
             <tr>
               <th>Account Number:</th>
-              <td>{{account.accountId}}</td>
+              <td>{{account.id}}</td>
             </tr>
             <tr>
                 <th>Most Recent Credit Score:</th>
@@ -37,8 +37,8 @@
 
     </div>
 
-    <div class="col-md-6 mb-3">
-        <div class="d-flex align-items-center justify-content-center" style="height: 350px" >
+    <div class="col-md-4 mb-3">
+        <div class="d-flex align-items-center justify-content-center" style="height: 250px" >
     
           
             <button type="button" class="btn btn-success mr-5" routerLink="/creditScore">Show Credit Score</button>

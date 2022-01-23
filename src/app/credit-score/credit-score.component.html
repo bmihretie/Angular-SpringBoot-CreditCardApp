@@ -1,11 +1,14 @@
 
+<!-- this is a credit score component with current credit score and with 
+credit score history  paginated page  -->
+
 <h1 class="text-center" style="background-color: #508bfc !important;color: #fff;font-size: 30px;padding:30px"> Here is your Credit Score and History</h1>
 
 <div class="container mb-3">
 
     <h2 class="text-center">Current Credit Score:</h2>
    
-    <button type="button" class="btn btn-info btn-lg btn-block mb-10" style="color: #fff;height: 60px;">{{creditScores[0].creditScore}}</button>
+    <button type="button" class="btn btn-info btn-lg btn-block mb-10" style="color: #fff;height: 60px;">{{account.customer.creditScore}}</button>
 
 
 </div>
@@ -16,7 +19,7 @@
     {{buttonName}}
    
   </button>
-
+<hr>
 
 <div class="container" id="wrapper">
 <div class="mat-elevation-z8 text-center"  [hidden]="!isCreditHistoryShown">
@@ -34,9 +37,11 @@
       </ng-container>
   
      
-      <ng-container matColumnDef="description">
+      <ng-container matColumnDef="csDescription">
         <th class="text-center" mat-header-cell *matHeaderCellDef> Description about your Credit Score </th>
-        <td class="text-center" mat-cell *matCellDef="let element"> Your credit score increased due to a decrease in overall balance and timely monthly payments </td>
+        
+        <!-- <td class="text-center" mat-cell *matCellDef="let element"> Your credit score increased due to a decrease in overall balance and timely monthly payments </td> -->
+        <td class="text-center" mat-cell *matCellDef="let element">{{element.csDescription}} </td>
       </ng-container> 
   
       
@@ -49,7 +54,7 @@
     <mat-paginator #paginator
                    [pageSizeOptions]="[5, 10, 20]"
                    showFirstLastButtons 
-                   [pageSize]="1"
+                   [pageSize]="5"
                    
                    aria-label="Select page">
     </mat-paginator>

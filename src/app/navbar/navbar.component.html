@@ -1,3 +1,7 @@
+
+<!-- this is a navbar component that is displayed across the page 
+in our website. it has nav bars to navigate the website. It has
+also a dialogu box for log out confirmation -->
 <nav class="navbar navbar-expand-lg navar navbar-dark bg-dark">
     <a class="navbar-brand" href="#"> Credit Account Application </a>
     <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
@@ -14,17 +18,14 @@
         </li>
   
         <li class="nav-item">
-          <a *ngIf="!loginService.isUserLoggedIn()" class="nav-link"  routerLink="/login">Sign-in</a>
-        </li>
-
-        <li class="nav-item">
-          <a class="nav-link" routerLink="/aboutus">Help</a>
+          <a class="nav-link" routerLink="/help">Help</a>
         </li>
    
         <li class="nav-item">
-          <a class="nav-link" routerLink="/help">Contact Us</a>
+          <a class="nav-link" routerLink="/contact">Contact Us</a>
         </li>
       </ul>
+      
       <ul class="navbar-nav justify-content-end">
         <li class="nav-item">
             <a *ngIf="loginService.isUserLoggedIn()" class="nav-link" routerLink="/display">My Account</a>
@@ -40,8 +41,14 @@
             
           </li>
 
+          <li class="nav-item">
+            <a *ngIf="!loginService.isUserLoggedIn()" class="nav-link"  routerLink="/login"><button type="button" class="btn btn-primary">Sign-in</button></a>
+          </li>c
+          
           <li class="nav-item ">
-            <a *ngIf="loginService.isUserLoggedIn()" class="nav-link" routerLink="/logout">Logout</a>
+            <!-- <button class="btn btn-link p-0" *ngIf="loginService.isUserLoggedIn()" class="nav-link" (click)="confirmDialog()">Button</button> -->
+            <a *ngIf="loginService.isUserLoggedIn()" class="nav-link" (click)="confirmDialog()"><button type="button" class="btn btn-warning">Logout</button></a>
+            <!-- <a *ngIf="loginService.isUserLoggedIn()" class="nav-link" routerLink="/logout">Logout</a> -->
           </li>
       </ul>
     </div>
