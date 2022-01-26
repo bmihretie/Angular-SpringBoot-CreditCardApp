@@ -1,6 +1,9 @@
-import { Component, OnInit } from '@angular/core';
+import { AfterViewInit, Component, OnInit, ViewChild } from '@angular/core';
 import { HttpclientService } from '../service/httpclient.service';
 import { AuthenticationService } from '../service/authentication.service';
+import { MatSort } from '@angular/material/sort';
+import { MatTableDataSource } from '@angular/material/table';
+import { MatPaginator } from '@angular/material/paginator';
 @Component({
   selector: 'app-transaction-statement',
   templateUrl: './transaction-statement.component.html',
@@ -15,6 +18,19 @@ export class TransactionStatementComponent implements OnInit {
   id: any;
 
   
+  // fields for pagination table column
+  displayedColumns: string[] = ['statementDate','download'];
+  // a field that holds the data for credit history information
+  dataSource !: MatTableDataSource<any>;
+
+  @ViewChild('paginator')
+  paginator!: MatPaginator;
+
+  @ViewChild(MatSort) matSort!: MatSort;
+
+  
+
+  
   ngOnInit() {
     this.username = this.authService.getUsername()
     this.httpClientService.getCustomerAccount(this.username).subscribe(
@@ -25,6 +41,10 @@ export class TransactionStatementComponent implements OnInit {
           response =>{
             console.log(response)
             this.statements = response
+            //this.statements.sort = this.matSort;
+            this.dataSource = new MatTableDataSource(this.statements);
+            this.dataSource.sort = this.matSort;
+            this.dataSource.paginator = this.paginator;
           },
         )
       },

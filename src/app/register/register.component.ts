@@ -175,9 +175,9 @@ export class RegisterComponent implements OnInit {
           this.creditApplicationForm.get('annualSalary')?.setValue(this.account.annualSalary);
           this.creditApplicationForm.get('username')?.setValue(this.account.username);
           this.creditApplicationForm.get('pass')?.setValue(this.account.pass);
-
+          this.creditApplicationForm.reset();
           alert("Credit Application created successfully.");
-          this.creditApplicationForm.reset(this.creditApplicationForm.value);
+          // this.creditApplicationForm.reset(this.creditApplicationForm.value);
         },
           // error message 
           error =>{

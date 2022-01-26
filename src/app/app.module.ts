@@ -22,7 +22,7 @@ import { MatIconModule } from '@angular/material/icon';
 import { MatButtonModule } from '@angular/material/button';
 import { MatToolbarModule } from '@angular/material/toolbar';
 
-
+//mport { MatSort } from '@angular/material/sort';
 import { AboutusComponent } from './help/aboutus.component';
 import { TransactionStatementComponent } from './transaction-statement/transaction-statement.component';
 import { CreditScoreComponent } from './credit-score/credit-score.component';
@@ -79,6 +79,7 @@ import { ConfirmationDailogComponent } from './confirmation-dailog/confirmation-
     MatIconModule,
     MatButtonModule,
     MatToolbarModule,
+    //MatSort
    
    
     //FontAwesomeModule

@@ -2,27 +2,35 @@
  <h1 class="text-center" style="background-color: #508bfc !important;color: #fff;font-size: 30px;padding:30px"> Monthly Statements</h1>
    <div class="col-md-12" id="wrapper" >
 
-        <!-- <h1 class="text-center">Monthly Statements</h1> -->
-    <table class="table table-striped">
-        <thead>
-            <tr>
-                <th>Month / Year</th>
-                <th>Download as PDF</th>
-            </tr>
-        </thead>
+    <table class="table table-striped" mat-table [dataSource]="dataSource" matSort matSortActive="statementDate" matSortDirection="desc">
+  
+        <ng-container matColumnDef="statementDate"> 
+          <th class="text-center" mat-header-cell *matHeaderCellDef> Month / Year</th>
+          <td class="text-center" mat-cell *matCellDef="let element"> {{element.statementDate | date: 'MMMM yyyy'}} </td>
+        </ng-container>
+  
+        
+    
        
-        <tbody>
-            <tr *ngFor="let statement of statements">
-                <td>{{statement.statementDate | date: 'MMMM yyyy'}}</td>
-                <td><a href="/"><i class="fa fa-file-pdf-o "></i><small class="ml-1">Download</small></a></td>
-            </tr>
-            
-        </tbody>
-    
-    </table>
+        <ng-container matColumnDef="download">
+          <th class="text-center" mat-header-cell *matHeaderCellDef>Download as PDF</th>
+          <td class="text-center" mat-cell *matCellDef="let element"> <a href="/"><i class="fa fa-file-pdf-o "></i><small class="ml-1">Download</small></a></td>
+        </ng-container>
     
     
+        <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+        <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
+      </table>
+  
     
+      <mat-paginator #paginator
+                     [pageSizeOptions]="[2, 4, 12]"
+                     showFirstLastButtons 
+                     [pageSize]="6"
+                     
+                     aria-label="Select page">
+      </mat-paginator>
+   
 
 </div>
 

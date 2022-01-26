@@ -1,3 +1,6 @@
+<!-- this is the main component that displays the main account
+information, paginated transaction history and a button link
+to for credit score and statements -->
 
 <h1 class="text-center" style="background-color: #508bfc !important;color: #fff;font-size: 30px;padding:30px">Account Information</h1>
 
@@ -58,12 +61,18 @@
     <h1 class="text-center">Transaction History for the last 30 days</h1>
 
     <div class="mat-elevation-z8 text-center">
-        <table class="table table-striped" mat-table [dataSource]="dataSource">
+ 
+        <table class="table table-striped" mat-table [dataSource]="dataSource" matSort      matSortActive="activityDate" matSortDirection="desc">
       
          
           <ng-container matColumnDef="id">
             <th class="text-center" mat-header-cell *matHeaderCellDef> Transaction ID. </th>
             <td class="text-center" mat-cell *matCellDef="let element"> {{element.id}} </td>
+          </ng-container>
+
+          <ng-container matColumnDef="activityDate">
+            <th class="text-center" mat-header-cell *matHeaderCellDef matSortActive="activityDate" matSortDirection="desc"> Transaction Date. </th>
+            <td class="text-center" mat-cell *matCellDef="let element"> {{element.activityDate | date}} </td>
           </ng-container>
       
          
@@ -73,10 +82,10 @@
           </ng-container>
       
          
-          <!-- <ng-container matColumnDef="date">
-            <th class="text-center" mat-header-cell *matHeaderCellDef> Transaction Date </th>
-            <td class="text-center" mat-cell *matCellDef="let element"> {{element.date}} </td>
-          </ng-container> -->
+          <ng-container matColumnDef="description">
+            <th class="text-center" mat-header-cell *matHeaderCellDef> Transaction Description </th>
+            <td class="text-center" mat-cell *matCellDef="let element"> {{element.description}} </td>
+          </ng-container>
       
           
       

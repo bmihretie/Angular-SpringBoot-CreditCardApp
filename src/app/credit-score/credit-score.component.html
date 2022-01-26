@@ -23,12 +23,14 @@ credit score history  paginated page  -->
 
 <div class="container" id="wrapper">
 <div class="mat-elevation-z8 text-center"  [hidden]="!isCreditHistoryShown">
-    <table class="table table-striped" mat-table [dataSource]="dataSource">
+    <table class="table table-striped" mat-table [dataSource]="dataSource" matSort matSortActive="statementDate" matSortDirection="desc">
   
       <ng-container matColumnDef="creditScore"> 
         <th class="text-center" mat-header-cell *matHeaderCellDef> Credit Score </th>
         <td class="text-center" mat-cell *matCellDef="let element"> {{element.creditScore}} </td>
       </ng-container>
+
+      
   
      
       <ng-container matColumnDef="statementDate">
@@ -38,7 +40,7 @@ credit score history  paginated page  -->
   
      
       <ng-container matColumnDef="csDescription">
-        <th class="text-center" mat-header-cell *matHeaderCellDef> Description about your Credit Score </th>
+        <th class="text-center" mat-header-cell *matHeaderCellDef > Description about your Credit Score </th>
         
         <!-- <td class="text-center" mat-cell *matCellDef="let element"> Your credit score increased due to a decrease in overall balance and timely monthly payments </td> -->
         <td class="text-center" mat-cell *matCellDef="let element">{{element.csDescription}} </td>

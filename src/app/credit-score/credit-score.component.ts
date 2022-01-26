@@ -1,5 +1,6 @@
 import { AfterViewInit, Component, OnInit, ViewChild } from '@angular/core';
 import { MatPaginator } from '@angular/material/paginator';
+import { MatSort } from '@angular/material/sort';
 import { MatTableDataSource } from '@angular/material/table';
 import { HttpclientService } from '../service/httpclient.service';
 import { AuthenticationService } from '../service/authentication.service';
@@ -31,14 +32,18 @@ export class CreditScoreComponent implements OnInit,AfterViewInit {
   @ViewChild('paginator')
   paginator!: MatPaginator;
 
+  @ViewChild(MatSort) matSort!: MatSort;
+
   ngAfterViewInit() {
-    //get credit score information usng http client service using customer id
+    //get credit score information using http client service and customer id
     this.httpClientService.getCustomerStatementsAndCreditScore(this.id).subscribe(
       (response:any) =>{ 
         console.log(response)
         this.creditScores = response;
         this.dataSource = new MatTableDataSource(this.creditScores);
+        this.dataSource.sort = this.matSort;
         this.dataSource.paginator = this.paginator;
+        
       },
     )
   }
@@ -57,7 +62,9 @@ export class CreditScoreComponent implements OnInit,AfterViewInit {
       },
     )
     // map and paginate the specific data to angular paginated table
+    this.dataSource.sort = this.matSort;
     this.dataSource.paginator = this.paginator;
+ 
   }
 
   // function to toggle the button name to show and hide credit

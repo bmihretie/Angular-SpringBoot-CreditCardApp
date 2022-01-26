@@ -3,6 +3,7 @@ import {MatPaginator} from '@angular/material/paginator';
 import {MatTableDataSource} from '@angular/material/table';
 import { Customer, HttpclientService } from '../service/httpclient.service';
 import { AuthenticationService } from '../service/authentication.service';
+import { MatSort } from '@angular/material/sort';
 
 @Component({
   selector: 'app-displayaccount',
@@ -22,7 +23,7 @@ export class DisplayaccountComponent implements OnInit, AfterViewInit{
   transactions: any;
 
    // fields for pagination table column
-  displayedColumns: string[] = ['id', 'amount'];
+  displayedColumns: string[] = ['id','activityDate', 'amount','description'];
 
   // a field that holds the data for transaction history information
   dataSource !: MatTableDataSource<any>;
@@ -30,6 +31,8 @@ export class DisplayaccountComponent implements OnInit, AfterViewInit{
 
   @ViewChild('paginator')
   paginator!: MatPaginator;
+  @ViewChild(MatSort) matSort!: MatSort;
+  
 
   ngAfterViewInit() {
     // get transaction history information using http client service  
@@ -38,6 +41,7 @@ export class DisplayaccountComponent implements OnInit, AfterViewInit{
       response =>{
         this.transactions = response
         this.dataSource = new MatTableDataSource(this.transactions);
+        this.dataSource.sort = this.matSort;
         this.dataSource.paginator = this.paginator;
       },
     )
@@ -62,6 +66,7 @@ export class DisplayaccountComponent implements OnInit, AfterViewInit{
       },
     )
      // for paginator data attachement
+    this.dataSource.sort = this.matSort;
     this.dataSource.paginator = this.paginator;
 
   }
